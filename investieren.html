@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Auf Sansibar Leben & Investieren – Residenz, Steuer, Fumba Town</title>
+<meta name="description" content="Sansibar als Wohnsitz: Residence Permit, Steuervorteile für Auswanderer, Fumba Town Immobilien. Kostenlose Erstberatung durch erfahrene Relocation-Beraterin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══ ZANZIBAR WEBSITE – SHARED STYLES ═══ */
+:root{
+  --ocean:#0a3d4a;--deep:#061f27;--teal:#147a8a;
+  --lagoon:#2ab8c8;--sand:#e8d5a3;--gold:#c9a84c;
+  --coral:#e07040;--cream:#faf7f0;--text:#1a1a1a;--muted:#6b7280;
+  --white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 5%;
+  background:rgba(6,31,39,.95);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(202,168,76,.15);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;
+  color:var(--sand);text-decoration:none;letter-spacing:.04em;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:1.6rem;list-style:none;align-items:center;}
+.nav-links a{color:rgba(232,213,163,.72);text-decoration:none;font-size:.78rem;
+  letter-spacing:.07em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-links a.current{color:var(--gold);}
+.nav-invest{background:linear-gradient(135deg,var(--teal),var(--ocean));
+  border:1px solid rgba(201,168,76,.3);color:var(--sand)!important;
+  padding:6px 14px;border-radius:2px;font-weight:500!important;transition:all .2s!important;}
+.nav-invest:hover{background:var(--gold)!important;color:var(--deep)!important;border-color:var(--gold)!important;}
+.lang-wrap{position:relative;}
+.lang-btn{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);color:rgba(232,213,163,.85);padding:5px 10px;
+  border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.76rem;
+  letter-spacing:.05em;transition:all .2s;}
+.lang-btn:hover{border-color:rgba(201,168,76,.4);}
+.lang-drop{position:absolute;top:calc(100%+8px);right:0;background:var(--deep);
+  border:1px solid rgba(201,168,76,.2);border-radius:4px;min-width:130px;
+  box-shadow:0 8px 30px rgba(0,0,0,.5);display:none;z-index:300;overflow:hidden;}
+.lang-drop.open{display:block;}
+.lang-opt{display:flex;align-items:center;gap:8px;padding:9px 14px;cursor:pointer;
+  font-size:.78rem;color:rgba(232,213,163,.65);transition:all .2s;
+  border-bottom:1px solid rgba(255,255,255,.04);}
+.lang-opt:last-child{border-bottom:none;}
+.lang-opt:hover,.lang-opt.sel{color:var(--gold);background:rgba(201,168,76,.07);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+.hamburger span{width:24px;height:2px;background:var(--sand);display:block;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-block;text-decoration:none;border-radius:2px;
+  font-size:.88rem;font-weight:500;letter-spacing:.04em;transition:all .25s;cursor:pointer;}
+.btn-gold{background:var(--gold);color:var(--deep);padding:13px 28px;border:2px solid var(--gold);}
+.btn-gold:hover{background:transparent;color:var(--gold);}
+.btn-teal{background:var(--teal);color:white;padding:13px 28px;border:2px solid var(--teal);}
+.btn-teal:hover{background:transparent;color:var(--teal);}
+.btn-light{border:1px solid rgba(255,255,255,.35);color:rgba(255,255,255,.85);padding:13px 28px;}
+.btn-light:hover{border-color:var(--gold);color:var(--gold);}
+.btn-sm{padding:9px 18px;font-size:.82rem;}
+
+/* ── SECTION HELPERS ── */
+.section-tag{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--teal);font-weight:500;margin-bottom:1rem;
+  display:flex;align-items:center;gap:10px;}
+.section-tag::before{content:'';display:block;width:22px;height:1px;background:var(--teal);}
+.section-tag.gold{color:var(--gold);}
+.section-tag.gold::before{background:var(--gold);}
+.section-tag.light{color:rgba(232,213,163,.6);}
+.section-tag.light::before{background:rgba(232,213,163,.4);}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,4vw,3rem);
+  font-weight:300;line-height:1.12;margin-bottom:1.4rem;}
+h2 em{font-style:italic;color:var(--teal);}
+h2 em.gold{color:var(--gold);}
+h2 em.sand{color:var(--sand);}
+.lead{font-size:1rem;color:var(--muted);line-height:1.82;max-width:620px;font-weight:300;}
+.lead.white{color:rgba(255,255,255,.55);}
+section{padding:6rem 8%;}
+.tip-box{background:rgba(201,168,76,.07);border-left:3px solid var(--gold);
+  padding:.9rem 1.1rem;margin-top:.9rem;border-radius:0 4px 4px 0;font-size:.8rem;line-height:1.6;}
+.tip-box strong{color:#8a6010;}
+.warn-box{background:rgba(224,112,64,.06);border-left:3px solid var(--coral);
+  padding:.8rem 1rem;border-radius:0 4px 4px 0;margin-top:.9rem;font-size:.77rem;color:#8a3020;line-height:1.6;}
+
+/* ── CARDS ── */
+.info-card{background:white;padding:1.8rem;border-radius:4px;border:1px solid #e8e8e0;
+  transition:transform .2s,box-shadow .2s;}
+.info-card:hover{transform:translateY(-2px);box-shadow:0 7px 25px rgba(0,0,0,.07);}
+.info-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;
+  font-weight:400;margin-bottom:.7rem;color:var(--ocean);}
+.info-card p{font-size:.83rem;line-height:1.72;color:var(--muted);}
+.info-card ul{list-style:none;margin-top:.6rem;}
+.info-card ul li{font-size:.8rem;color:var(--muted);line-height:1.72;
+  padding-left:.9rem;position:relative;}
+.info-card ul li::before{content:'→';position:absolute;left:0;color:var(--teal);font-size:.7rem;top:3px;}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;}
+
+/* ── PHOTO CARDS ── */
+.photo-card{border-radius:4px;overflow:hidden;position:relative;cursor:pointer;
+  background:var(--ocean);}
+.photo-card img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .4s;opacity:.9;}
+.photo-card:hover img{transform:scale(1.04);opacity:1;}
+.photo-card-overlay{position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(6,31,39,.85) 0%,transparent 100%);
+  padding:1.5rem;}
+.photo-card-overlay h3{font-family:'Cormorant Garamond',serif;color:white;
+  font-size:1.3rem;font-weight:300;margin-bottom:.2rem;}
+.photo-card-overlay p{font-size:.75rem;color:rgba(255,255,255,.55);letter-spacing:.08em;text-transform:uppercase;}
+
+/* ── PHOTO HERO ── */
+.photo-hero{position:relative;overflow:hidden;background:var(--deep);}
+.photo-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;}
+.photo-hero-content{position:relative;z-index:2;}
+
+/* ── FAQ ── */
+.faq-item{border:1px solid #e8e8e0;border-radius:4px;overflow:hidden;background:white;}
+.faq-q{width:100%;padding:1.1rem 1.4rem;background:none;border:none;
+  text-align:left;font-family:'DM Sans',sans-serif;font-size:.86rem;font-weight:500;
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+  gap:1rem;color:var(--text);transition:background .2s;}
+.faq-q:hover{background:var(--cream);}
+.faq-q.open{color:var(--teal);background:rgba(20,122,138,.04);}
+.faq-tog{font-size:.65rem;flex-shrink:0;transition:transform .2s;}
+.faq-q.open .faq-tog{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.faq-a.open{max-height:300px;}
+.faq-a-in{padding:0 1.4rem 1.1rem;font-size:.8rem;color:var(--muted);line-height:1.72;}
+
+/* ── TABS ── */
+.tab-bar{display:flex;border-bottom:2px solid #deded5;margin-bottom:2.8rem;overflow-x:auto;}
+.tab-btn{padding:.85rem 1.5rem;background:none;border:none;font-family:'DM Sans',sans-serif;
+  font-size:.77rem;letter-spacing:.07em;text-transform:uppercase;font-weight:500;
+  color:var(--muted);cursor:pointer;white-space:nowrap;
+  border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;}
+.tab-btn.active{color:var(--teal);border-bottom-color:var(--teal);}
+.tab-pane{display:none;}
+.tab-pane.active{display:block;}
+
+/* ── FORMS ── */
+.form-box{background:white;padding:2.3rem;border-radius:4px;box-shadow:0 8px 40px rgba(0,0,0,.08);}
+.form-box h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--ocean);margin-bottom:.25rem;}
+.form-sub{font-size:.78rem;color:var(--muted);margin-bottom:1.4rem;}
+.fg{margin-bottom:.9rem;}
+.fg label{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem;}
+.fg input,.fg select,.fg textarea{width:100%;padding:.7rem .9rem;border:1px solid #ddd;
+  border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.85rem;
+  color:var(--text);background:white;outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--teal);}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+.f-submit{width:100%;padding:.85rem;background:var(--teal);color:white;border:none;
+  border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;
+  cursor:pointer;letter-spacing:.04em;transition:background .2s;margin-top:.4rem;}
+.f-submit:hover{background:var(--ocean);}
+.f-note{font-size:.7rem;color:var(--muted);text-align:center;margin-top:.7rem;}
+
+/* ── FOOTER ── */
+footer{background:var(--deep);padding:4rem 8% 2rem;border-top:1px solid rgba(201,168,76,.08);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.fb p{font-size:.78rem;color:rgba(255,255,255,.3);line-height:1.72;margin-top:.9rem;}
+.fc h5{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
+.fc a{display:block;font-size:.8rem;color:rgba(255,255,255,.38);text-decoration:none;padding:.28rem 0;transition:color .2s;}
+.fc a:hover{color:rgba(255,255,255,.8);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:1.4rem;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.72rem;color:rgba(255,255,255,.2);flex-wrap:wrap;gap:.5rem;}
+.footer-bottom a{color:rgba(255,255,255,.2);text-decoration:none;}
+.footer-bottom a:hover{color:rgba(255,255,255,.5);}
+.admin-trig{opacity:.22;cursor:pointer;transition:opacity .2s;background:none;border:none;
+  color:inherit;font-family:inherit;font-size:inherit;}
+.admin-trig:hover{opacity:.7;}
+
+/* ── ADMIN OVERLAY ── */
+.admin-overlay{position:fixed;inset:0;background:rgba(6,31,39,.98);z-index:1000;
+  display:none;flex-direction:column;overflow-y:auto;}
+.admin-overlay.open{display:flex;}
+.admin-wrap{max-width:860px;width:100%;margin:0 auto;padding:3rem 2rem;}
+.admin-hdr{display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.08);}
+.admin-hdr h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--sand);}
+.admin-close{background:rgba(255,255,255,.08);border:none;color:var(--sand);
+  padding:7px 14px;border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.82rem;}
+.atab-bar{display:flex;gap:.4rem;margin-bottom:2rem;}
+.atab{background:rgba(255,255,255,.05);border:none;color:rgba(255,255,255,.45);
+  padding:7px 18px;border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.8rem;transition:all .2s;}
+.atab.active{background:var(--teal);color:white;}
+.ap{display:none;}
+.ap.active{display:block;}
+.login-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  border-radius:4px;padding:2.5rem;max-width:380px;margin:3rem auto;text-align:center;}
+.login-box h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--sand);margin-bottom:.5rem;}
+.login-box p{font-size:.8rem;color:rgba(255,255,255,.35);margin-bottom:1.5rem;}
+.ai{width:100%;padding:.65rem .9rem;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.11);border-radius:2px;color:white;
+  font-family:'DM Sans',sans-serif;font-size:.85rem;outline:none;margin-bottom:.8rem;}
+.ai:focus{border-color:var(--teal);}
+.ai-lbl{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.38);margin-bottom:.35rem;text-align:left;}
+.abtn{background:var(--teal);border:none;color:white;padding:.7rem 1.4rem;
+  border-radius:2px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.83rem;transition:background .2s;}
+.abtn:hover{background:var(--ocean);}
+.abtn.danger{background:#b03020;}
+.abtn.sec{background:rgba(255,255,255,.1);}
+.abtn.full{width:100%;}
+.post-row{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);
+  border-radius:4px;padding:1.1rem 1.4rem;margin-bottom:.7rem;
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+.pr-info h4{font-size:.88rem;color:rgba(232,213,163,.9);}
+.pr-info p{font-size:.72rem;color:rgba(255,255,255,.32);margin-top:.15rem;}
+.pr-actions{display:flex;gap:.5rem;flex-shrink:0;}
+.aform-group{margin-bottom:1rem;}
+.aform-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+textarea.ai{resize:vertical;min-height:120px;}
+
+/* ── BLOG CARDS ── */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.5rem;}
+.blog-card{background:white;border:1px solid #e8e8e0;border-radius:4px;overflow:hidden;
+  cursor:pointer;transition:all .25s;}
+.blog-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.09);}
+.bc-img{height:160px;overflow:hidden;background:var(--ocean);}
+.bc-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.blog-card:hover .bc-img img{transform:scale(1.05);}
+.bc-body{padding:1.4rem;}
+.bc-cat{display:inline-block;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 8px;border-radius:10px;margin-bottom:.6rem;background:rgba(20,122,138,.09);color:var(--teal);}
+.bc-body h3{font-family:'Cormorant Garamond',serif;font-size:1.18rem;color:var(--ocean);
+  margin-bottom:.4rem;line-height:1.3;}
+.bc-body p{font-size:.78rem;color:var(--muted);line-height:1.6;margin-bottom:.7rem;}
+.bc-meta{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);}
+.bf-btn{background:none;border:1px solid #deded5;padding:5px 14px;border-radius:16px;
+  font-family:'DM Sans',sans-serif;font-size:.75rem;cursor:pointer;color:var(--muted);transition:all .2s;}
+.bf-btn.active,.bf-btn:hover{border-color:var(--teal);color:var(--teal);background:rgba(20,122,138,.05);}
+
+/* ── ARTICLE MODAL ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:800;
+  display:none;align-items:center;justify-content:center;padding:1rem;}
+.overlay.open{display:flex;}
+.modal{background:white;border-radius:4px;width:100%;max-width:660px;
+  max-height:90vh;overflow-y:auto;position:relative;}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;
+  font-size:1.2rem;cursor:pointer;color:var(--muted);}
+.modal-body{padding:2rem;}
+.modal-body h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;
+  color:var(--ocean);margin-bottom:.4rem;line-height:1.2;}
+.modal-meta{font-size:.75rem;color:var(--muted);margin-bottom:1.5rem;display:flex;gap:1rem;}
+.modal-text{font-size:.87rem;line-height:1.88;color:var(--text);}
+.modal-text p{margin-bottom:1rem;}
+
+/* ── INVEST CARDS ── */
+.invest-feature{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  border-radius:3px;padding:1.3rem;transition:border-color .2s,background .2s;}
+.invest-feature:hover{border-color:rgba(201,168,76,.3);background:rgba(255,255,255,.06);}
+.invest-feature .if-icon{font-size:1.4rem;margin-bottom:.5rem;}
+.invest-feature h4{font-size:.85rem;color:rgba(232,213,163,.9);margin-bottom:.3rem;}
+.invest-feature p{font-size:.75rem;color:rgba(255,255,255,.38);line-height:1.55;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .frow{grid-template-columns:1fr;}
+  .aform-row{grid-template-columns:1fr;}
+  section{padding:4rem 6%;}
+}
+@media(max-width:600px){
+  .footer-grid{grid-template-columns:1fr;}
+}
+
+/* INVEST PAGE SPECIFIC */
+.page-hero{height:62vh;min-height:440px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:0 8% 5rem;}
+.ph-bg{position:absolute;inset:0;}
+.ph-bg img{width:100%;height:100%;object-fit:cover;opacity:.65;}
+.ph-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(6,31,39,.9) 0%,rgba(6,31,39,.25) 75%);}
+.ph-content{position:relative;z-index:2;}
+.ph-content h1{font-family:"Cormorant Garamond",serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:white;line-height:1.05;margin-bottom:.7rem;}
+.ph-content h1 em{font-style:italic;color:var(--sand);}
+/* LIFESTYLE SECTION */
+.lifestyle{background:white;}
+.life-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:2.5rem;}
+.life-card{background:var(--cream);border:1px solid #e8e8e0;border-radius:4px;padding:1.5rem;}
+.life-card .lc-ico{font-size:1.8rem;margin-bottom:.7rem;}
+.life-card h4{font-size:.9rem;font-weight:500;color:var(--ocean);margin-bottom:.4rem;}
+.life-card p{font-size:.8rem;color:var(--muted);line-height:1.65;}
+/* RESIDENCY */
+.residency{background:var(--cream);}
+.rez-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.3rem;margin-top:2rem;}
+.rez-card{background:white;border-radius:4px;overflow:hidden;border:1px solid #e8e8e0;}
+.rez-header{background:var(--ocean);padding:1.3rem 1.5rem;}
+.rez-header h3{font-family:"Cormorant Garamond",serif;font-size:1.2rem;color:white;font-weight:300;margin-bottom:.3rem;}
+.rez-badge{font-size:.62rem;background:rgba(201,168,76,.2);color:var(--gold);padding:2px 8px;border-radius:10px;display:inline-block;}
+.rez-body{padding:1.4rem;}
+.rez-body p{font-size:.81rem;color:var(--muted);line-height:1.7;margin-bottom:.8rem;}
+.rez-list{list-style:none;}
+.rez-list li{font-size:.78rem;color:var(--muted);padding:.3rem 0;border-bottom:1px solid #eee;display:flex;gap:.5rem;}
+.rez-list li::before{content:"✓";color:var(--teal);flex-shrink:0;}
+/* TAX */
+.tax-section{background:white;}
+.tax-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.tax-table{width:100%;border-collapse:collapse;margin-top:1.2rem;}
+.tax-table th{text-align:left;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.75rem 0;border-bottom:2px solid #e8e8e0;}
+.tax-table td{padding:.7rem 0;font-size:.8rem;border-bottom:1px solid #f0efe8;line-height:1.55;}
+.tax-table td:first-child{color:var(--ocean);font-weight:500;padding-right:1rem;}
+.tax-table tr.hl td{background:rgba(201,168,76,.04);}
+/* FUMBA PROJECT */
+.fumba-project{background:var(--deep);position:relative;overflow:hidden;}
+.fumba-project::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 30%,rgba(20,122,138,.2),transparent 65%);}
+.fp-inner{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:560px;}
+.fp-img{position:relative;overflow:hidden;}
+.fp-img img{width:100%;height:100%;object-fit:cover;opacity:.72;}
+.fp-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,transparent 55%,var(--deep) 100%);}
+.fp-content{padding:5rem 5rem 5rem 4rem;display:flex;flex-direction:column;justify-content:center;}
+.fp-content h2{color:white;margin-bottom:.8rem;}
+.fp-content h2 em{color:var(--gold);}
+.fumba-stats{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1.5rem 0 1.8rem;}
+.fst{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:2px;padding:.8rem;text-align:center;}
+.fst-n{font-family:"Cormorant Garamond",serif;font-size:1.6rem;color:var(--gold);}
+.fst-l{font-size:.62rem;color:rgba(255,255,255,.32);text-transform:uppercase;letter-spacing:.07em;}
+.fp-features{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.8rem;}
+.fp-feat{display:flex;align-items:center;gap:.7rem;font-size:.8rem;color:rgba(255,255,255,.5);}
+.fp-feat::before{content:"✓";color:var(--gold);flex-shrink:0;}
+.fp-ctas{display:flex;flex-direction:column;gap:.7rem;}
+/* STEPS */
+.process-section{background:var(--ocean);}
+.proc-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:2.5rem;}
+.proc-step{padding:1.5rem 1.5rem 1.5rem 0;border-left:1px solid rgba(255,255,255,.08);}
+.proc-step:first-child{border-left:none;padding-left:0;}
+.proc-num{font-family:"Cormorant Garamond",serif;font-size:2.3rem;color:var(--gold);line-height:1;margin-bottom:.4rem;}
+.proc-step h4{font-size:.82rem;color:rgba(232,213,163,.9);margin-bottom:.25rem;}
+.proc-step p{font-size:.73rem;color:rgba(255,255,255,.38);line-height:1.5;}
+/* CTA BOTTOM */
+.cta-bottom{background:var(--cream);padding:5rem 8%;}
+.cta-bottom-inner{display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:center;}
+.cta-cards{display:flex;flex-direction:column;gap:1rem;}
+.cta-card{background:white;border:1px solid #e8e8e0;border-radius:4px;padding:1.5rem;transition:border-color .2s;}
+.cta-card:hover{border-color:var(--teal);}
+.cc-ico{font-size:1.5rem;margin-bottom:.5rem;}
+.cc-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.25rem;}
+.cc-title{font-family:"Cormorant Garamond",serif;font-size:1.1rem;color:var(--ocean);margin-bottom:.3rem;}
+.cc-desc{font-size:.76rem;color:var(--muted);line-height:1.6;margin-bottom:1rem;}
+@media(max-width:900px){.fp-inner,.tax-inner,.cta-bottom-inner{grid-template-columns:1fr;}.fp-img{height:260px;}.proc-steps{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.proc-steps{grid-template-columns:1fr;}}
+</style>
+  <link rel="canonical" href="https://sansibar.info/investieren.html">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Auf Sansibar Leben & Investieren – Residenz, Steuer, Fumba Town">
+  <meta property="og:description" content="Sansibar als Wohnsitz: Residence Permit, Steuervorteile für Auswanderer, Fumba Town Immobilien. Kostenlose Erstberatung durch erfahrene Relocation-Beraterin.">
+  <meta property="og:image" content="images/Fumbatown_Stadtbild_am_Meer.jpg">
+  <meta property="og:url" content="https://sansibar.info/investieren.html">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Sansibar – Reisen & Leben">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Auf Sansibar Leben & Investieren – Residenz, Steuer, Fumba Town">
+  <meta name="twitter:description" content="Sansibar als Wohnsitz: Residence Permit, Steuervorteile für Auswanderer, Fumba Town Immobilien. Kostenlose Erstberatung durch erfahrene Relocation-Beraterin.">
+  <meta name="twitter:image" content="images/Fumbatown_Stadtbild_am_Meer.jpg">
+  <!-- Additional Meta -->
+  <meta name="keywords" content="Sansibar Auswandern, Sansibar Immobilien, Fumba Town, Residence Permit Tansania, Steuervorteile Auswanderer, Sansibar investieren, Golden Visa Tansania, Expat Sansibar">
+  <meta name="author" content="Corinna Taborek, FumbaTown Agency">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a3d4a">
+  <meta name="geo.region" content="TZ-Z">
+  <meta name="geo.placename" content="Sansibar, Tansania">
+</head>
+<body>
+<nav>
+  <a href="./index.html" class="nav-logo">Sansi<span>bar</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="./index.html">Start</a></li>
+    <li><a href="./reisen.html">Reisen</a></li>
+    <li><a href="./investieren.html" class="current nav-invest">Leben &amp; Investieren</a></li>
+    <li><a href="./blog.html">Blog</a></li>
+    <li><a href="./kontakt.html">Kontakt</a></li>
+    <li><div class="lang-wrap"><button class="lang-btn" onclick="toggleLangDrop(event)"><span id="langFlag">🇩🇪</span> <span id="langCode">DE</span> ▾</button>
+      <div class="lang-drop" id="langDrop">
+        <div class="lang-opt sel" onclick="setLang('de')">🇩🇪 &nbsp;Deutsch</div>
+        <div class="lang-opt" onclick="setLang('en')">🇬🇧 &nbsp;English</div>
+      </div></div></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="ph-bg"><img src="images/Strand_Luftbild_4.png" alt="Sansibar Leben" onerror="this.style.display='none'"></div>
+  <div class="ph-content">
+    <div style="font-size:.7rem;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem"><a href="./index.html" style="color:rgba(255,255,255,.4);text-decoration:none">Start</a> &nbsp;/&nbsp; Leben &amp; Investieren</div>
+    <h1>Leben &amp; Investieren<br><em>auf Sansibar</em></h1>
+    <p style="color:rgba(255,255,255,.5);font-size:.95rem;margin-top:.5rem;max-width:520px;line-height:1.7">Immer mehr Deutschsprachige entdecken Sansibar als neue Heimat – für ein Leben in der Sonne, steuerliche Freiheit und echte Lebensqualität.</p>
+  </div>
+</div>
+
+<!-- LIFESTYLE SECTION -->
+<section class="lifestyle" id="leben">
+  <div class="section-tag">Sansibar als Wohnsitz</div>
+  <h2>Was dich auf Sansibar<br><em>erwartet</em></h2>
+  <p class="lead">Nicht nur ein Traumziel – Sansibar entwickelt sich zu einem echten Lebensmittelpunkt für internationale Expats. Was du dort findest:</p>
+  <div class="life-grid">
+    <div class="life-card"><div class="lc-ico">🌡️</div><h4>Ganzjähriges Traumklima</h4><p>Rund 27°C das ganze Jahr, Meeresluft und tropische Natur – kein langer dunkler Winter mehr.</p></div>
+    <div class="life-card"><div class="lc-ico">💸</div><h4>Niedrige Lebenshaltungskosten</h4><p>Lokal lebt es sich deutlich günstiger als in Deutschland, Österreich oder der Schweiz – bei hohem Komfort in modernen Projekten.</p></div>
+    <div class="life-card"><div class="lc-ico">👨‍👩‍👧</div><h4>Wachsende Expat-Community</h4><p>Deutschsprachige Community in Fumba Town, internationale Schulen im Aufbau, Netzwerk von Gleichgesinnten.</p></div>
+    <div class="life-card"><div class="lc-ico">🏥</div><h4>Medizinische Versorgung</h4><p>Deutschsprachige Ärztin direkt in Fumba Town, Kliniken und Apotheken in Stone Town, Malaria-Schnelltests überall.</p></div>
+    <div class="life-card"><div class="lc-ico">🛡️</div><h4>Sicherheit</h4><p>Sansibar gilt als eines der sichersten Reiseziele Ostafrikas. Fumba Town hat eigenes Sicherheitspersonal rund um die Uhr.</p></div>
+    <div class="life-card"><div class="lc-ico">✈️</div><h4>Gute Anbindung</h4><p>15 Min. vom Flughafen, direkte Verbindungen über Dubai, Istanbul, Doha – Europa in rund 10–14 Stunden erreichbar.</p></div>
+  </div>
+</section>
+
+<!-- RESIDENCY OPTIONS -->
+<section class="residency" id="residenz">
+  <div class="section-tag">Aufenthalt &amp; Residenz</div>
+  <h2>Deine Optionen für<br><em>einen Wohnsitz auf Sansibar</em></h2>
+  <p class="lead">Je nach Lebenssituation gibt es verschiedene Wege, dauerhaft oder langfristig auf Sansibar zu leben.</p>
+  <div class="rez-grid">
+    <div class="rez-card">
+      <div class="rez-header"><div class="rez-badge">Einfachste Option</div><h3>Touristenvisum (90 Tage)</h3></div>
+      <div class="rez-body"><p>Das 90-Tage-Touristenvisum lässt sich durch Ausreise und Wiedereinreise verlängern – ein gängiges Modell unter digitalen Nomaden und Kurzzeit-Auswanderern.</p>
+      <ul class="rez-list"><li>90 Tage pro Einreise</li><li>„Visa-Run" nach Kenia möglich (~100 USD)</li><li>Keine feste Obergrenze an Einreisen</li><li>Kosten: 50 USD pro Einreise</li></ul></div>
+    </div>
+    <div class="rez-card">
+      <div class="rez-header"><div class="rez-badge">Für Langzeitbewohner</div><h3>Residence Permit Tansania</h3></div>
+      <div class="rez-body"><p>Wer dauerhaft in Tansania und Sansibar leben möchte, kann eine Aufenthaltserlaubnis beantragen – in verschiedenen Kategorien je nach Lebenssituation.</p>
+      <ul class="rez-list"><li>Kategorie A: Beschäftigte</li><li>Kategorie B: Investoren</li><li>Kategorie C: Rentner / Privatiers</li><li>Jährlich oder alle 2 Jahre erneuerbar</li></ul></div>
+    </div>
+    <div class="rez-card">
+      <div class="rez-header"><div class="rez-badge">Via Immobilie</div><h3>Investoren-Residenz (ZIPA)</h3></div>
+      <div class="rez-body"><p>Über eine Investition in der ZIPA-Freihandelszone (z.B. Fumba Town) erhalten Investoren Aufenthaltsrecht und erhebliche Steuervorteile.</p>
+      <ul class="rez-list"><li>Aufenthaltsrecht für Investoren</li><li>ZIPA-Freizone: Steuervergünstigungen</li><li>Optional: Mietverwaltung inklusive</li><li>Renditepotenzial durch Kurzzeitvermietung</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- TAX TABLE -->
+<section class="tax-section" id="steuer">
+  <div class="section-tag">Steuerliche Aspekte</div>
+  <h2>Steuerliche Vorteile<br><em>für Auswanderer</em></h2>
+  <div class="tax-inner">
+    <div>
+      <p class="lead" style="margin-bottom:1.5rem">Für deutsche Staatsbürger, die ihren Wohnsitz nach Sansibar verlagern, eröffnen sich erhebliche steuerliche Gestaltungsmöglichkeiten – sofern die deutschen Steuerpflichtregeln beachtet werden.</p>
+      <div class="tip-box"><strong>Wichtiger Hinweis:</strong> Die steuerliche Situation ist individuell. Ich berate dich gerne persönlich zu deiner spezifischen Situation. <a href="https://calendly.com/corinna-taborek-cps/30min?month=2025-09" target="_blank" style="color:var(--teal)">Beratungsgespräch vereinbaren →</a></div>
+      <div style="margin-top:1.5rem;padding:1.1rem;background:rgba(107,114,128,.06);border-radius:4px;border:1px solid #e8e8e0">
+        <p style="font-size:.78rem;color:var(--muted);line-height:1.7">Alle Angaben ohne Gewähr. Steuerberatung durch qualifizierten Berater erforderlich. Deutsche Wegzugsbesteuerung und erweiterte Steuerpflicht beachten. Dies ist keine Steuerberatung.</p>
+      </div>
+    </div>
+    <div>
+      <table class="tax-table">
+        <thead><tr><th>Aspekt</th><th>Sansibar / Tansania</th></tr></thead>
+        <tbody>
+          <tr><td>Einkommensteuer</td><td>0% auf ausländische Einkünfte (territorial)</td></tr>
+          <tr class="hl"><td>Kapitalertragsteuer</td><td>Keine auf ausländische Kapitalerträge</td></tr>
+          <tr><td>Vermögensteuer</td><td>Keine</td></tr>
+          <tr class="hl"><td>Erbschaftsteuer</td><td>Keine in Tansania</td></tr>
+          <tr><td>Immobilien (ZIPA)</td><td>Steuervergünstigungen in der Freizone</td></tr>
+          <tr class="hl"><td>DBA mit Deutschland</td><td>Kein DBA – separate Prüfung notwendig</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FUMBA TOWN PROJECT -->
+<section class="fumba-project" id="fumba">
+  <div class="fp-inner">
+    <div class="fp-img"><img src="images/FumbaTown_Projekt_Luftaufnahme_Stadtansicht.jpg" alt="Fumba Town" onerror="this.style.display='none'"></div>
+    <div class="fp-content">
+      <div class="section-tag gold">Das Projekt</div>
+      <h2>Fumba Town –<br><em class="gold">das deutsche Stadtprojekt</em></h2>
+      <p style="color:rgba(255,255,255,.5);font-size:.88rem;line-height:1.78;margin-bottom:1.2rem">Das erste nachhaltige Stadtprojekt Ostafrikas – entwickelt von einem deutschen Team in der ZIPA-Freihandelszone Sansibars. Nicht nur Investment, sondern ein echtes Zuhause.</p>
+      <div class="fumba-stats">
+        <div class="fst"><div class="fst-n">15 Min.</div><div class="fst-l">Flughafen</div></div>
+        <div class="fst"><div class="fst-n">ZIPA</div><div class="fst-l">Freizone</div></div>
+        <div class="fst"><div class="fst-n">2026</div><div class="fst-l">Einzug</div></div>
+        <div class="fst"><div class="fst-n">DE</div><div class="fst-l">Entwickler</div></div>
+      </div>
+      <div class="fp-features">
+        <div class="fp-feat">Beach Club, Pool &amp; Restaurants fußläufig</div>
+        <div class="fp-feat">Deutschsprachige Ärztin im Projekt</div>
+        <div class="fp-feat">Supermarkt, Café und Co-Working</div>
+        <div class="fp-feat">8–15% Mietrendite p.a. möglich</div>
+        <div class="fp-feat">Aufenthaltsrecht via Investition</div>
+      </div>
+      <div class="fp-ctas">
+        <a href="https://fumbatown.agency" target="_blank" class="btn btn-gold">🌐 Alle Immobilien auf fumbatown.agency</a>
+        <a href="https://calendly.com/corinna-taborek-cps/30min?month=2025-09" target="_blank" class="btn btn-teal">📅 Kostenloses Beratungsgespräch</a>
+        <a href="https://fumbatown.agency/investorenreise-fumba-town-sansibar" target="_blank" style="color:rgba(201,168,76,.6);font-size:.8rem;text-decoration:none;margin-top:.3rem;display:inline-flex;align-items:center;gap:.4rem">✈️ Investorenreise anfragen →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS STEPS -->
+<section class="process-section">
+  <div class="section-tag light">So läuft es ab</div>
+  <h2 style="color:white">In 5 Schritten <em class="sand">zum Eigentümer</em></h2>
+  <div class="proc-steps">
+    <div class="proc-step"><div class="proc-num">1</div><h4>Erstgespräch</h4><p>30-Min. Beratung per Video – kostenlos und unverbindlich.</p></div>
+    <div class="proc-step"><div class="proc-num">2</div><h4>Investorenreise</h4><p>Vor-Ort-Besichtigung in Fumba Town inkl. Workshop.</p></div>
+    <div class="proc-step"><div class="proc-num">3</div><h4>Einheit wählen</h4><p>Apartment, Penthouse oder Villa – je nach Budget.</p></div>
+    <div class="proc-step"><div class="proc-num">4</div><h4>Kauf &amp; Recht</h4><p>Strukturierter Kaufprozess mit Anwalt und Escrow-Konto.</p></div>
+    <div class="proc-step"><div class="proc-num">5</div><h4>Einzug</h4><p>Schlüsselübergabe – optional mit Mietverwaltung.</p></div>
+  </div>
+</section>
+
+<!-- CTA BOTTOM -->
+<section class="cta-bottom">
+  <div class="cta-bottom-inner">
+    <div>
+      <div class="section-tag">Nächster Schritt</div>
+      <h2>Starte jetzt –<br><em>kostenlos und unverbindlich</em></h2>
+      <p class="lead">Ich begleite dich von der ersten Frage bis zum Einzug. Ob Investition, Auswanderung oder Zweitwohnsitz.</p>
+      <div style="margin-top:1.8rem;display:flex;flex-direction:column;gap:.45rem">
+        <div style="font-size:.83rem;color:var(--muted);display:flex;gap:.7rem"><span style="color:var(--teal)">✓</span>Kostenloses 30-Min. Erstgespräch</div>
+        <div style="font-size:.83rem;color:var(--muted);display:flex;gap:.7rem"><span style="color:var(--teal)">✓</span>Internationale Relocation-Erfahrung</div>
+        <div style="font-size:.83rem;color:var(--muted);display:flex;gap:.7rem"><span style="color:var(--teal)">✓</span>Netzwerk aus Anwälten, Steuerberatern &amp; Maklern</div>
+        <div style="font-size:.83rem;color:var(--muted);display:flex;gap:.7rem"><span style="color:var(--teal)">✓</span>Golden Visa · 2. Staatsbürgerschaft · Firmengründung</div>
+      </div>
+    </div>
+    <div class="cta-cards">
+      <div class="cta-card"><div class="cc-ico">📅</div><div class="cc-label">Kostenlos</div><div class="cc-title">30-Min. Beratungsgespräch</div><p class="cc-desc">Deine Fragen zu Kauf, Residenz, Steuern und Leben auf Sansibar – alles in einem Gespräch.</p><a href="https://calendly.com/corinna-taborek-cps/30min?month=2025-09" target="_blank" class="btn btn-gold btn-sm">Termin buchen →</a></div>
+      <div class="cta-card"><div class="cc-ico">✈️</div><div class="cc-label">Vor-Ort-Erlebnis</div><div class="cc-title">Investorenreise nach Fumba Town</div><p class="cc-desc">Besichtige das Projekt, triff andere Investoren und erlebe Sansibar hautnah.</p><a href="https://fumbatown.agency/investorenreise-fumba-town-sansibar" target="_blank" class="btn btn-teal btn-sm">Zur Investorenreise →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="fb"><a href="./index.html" class="nav-logo">Sansi<span>bar</span></a><p>Leben &amp; Investieren auf Sansibar. Ein Service von FumbaTown Agency.</p></div>
+    <div class="fc"><h5>Auf dieser Seite</h5><a href="#leben">Leben auf Sansibar</a><a href="#residenz">Residenz-Optionen</a><a href="#steuer">Steuervorteile</a><a href="#fumba">Fumba Town</a></div>
+    <div class="fc"><h5>Weitere Seiten</h5><a href="./index.html">Startseite</a><a href="./reisen.html">Reiseführer</a><a href="./blog.html">Blog</a><a href="./kontakt.html">Kontakt</a></div>
+    <div class="fc"><h5>Direktkontakt</h5><a href="https://calendly.com/corinna-taborek-cps/30min?month=2025-09" target="_blank">Beratungstermin buchen</a><a href="https://fumbatown.agency/investorenreise-fumba-town-sansibar" target="_blank">Investorenreise</a><a href="https://fumbatown.agency" target="_blank">fumbatown.agency</a><a href="mailto:office@fumbatown.agency">office@fumbatown.agency</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 FumbaTown Agency · office@fumbatown.agency · +49 155 630 586 76</span></div>
+</footer>
+
+<script>
+/* ═══ SHARED JS FOR ALL PAGES ═══ */
+
+// Image IDs (Unsplash - free license)
+const IMGS = {
+  hero_home:     'images/Segelboot_1.png',
+  hero_reisen:   'images/Boot_und_Massai_am_Strand_13.png',
+  hero_invest:   'images/Strand_Luftbild_4.png',
+  hero_blog:     'images/Strand_Restaurant_16.png',
+  hero_contact:  'images/Frau_am_Strand_12.png',
+  nungwi:        'images/Segelboot_1.png',
+  paje:          'images/Boot_und_Massai_am_Strand_13.png',
+  stone:         'images/Historische_Festung_in_Stonetown_6.png',
+  boats:         'images/Bunte_Boote_5.png',
+  spices:        'images/zwei_Boote_und_Mann_am_Strand_15.png',
+  fumba:         'images/Fumbatown_Stadtbild_am_Meer.jpg',
+  invest1:       'images/Strand_Luftbild_4.png',
+  invest2:       'images/Segelboot_1.png',
+};
+function img(id,w,h){ return id; }?w=${w}&h=${h}&auto=format&fit=crop&q=80`;
+}
+
+// Default blog posts
+const DEFAULT_POSTS = [
+  {id:1,emoji:'🌊',cat:'reisen',
+   image:'images/Boot_und_Massai_am_Strand_13.png',
+   title:'Die 6 schönsten Strände Sansibars',
+   titleEn:'The 6 Most Beautiful Beaches of Zanzibar',
+   author:'Corinna Taborek',date:'2025-01-15',
+   excerpt:'Von Nungwi bis Paje – wir zeigen, welcher Strand zu dir passt.',
+   excerptEn:"From Nungwi to Paje – we show which beach suits you best.",
+   body:'Sansibar ist bekannt für seine unglaublichen Strände. Hier sind die sechs schönsten:
+
+**Nungwi** im Norden ist der lebendigste Strand – perfekt für Sundowner und Nachtleben. Viele Bars und Restaurants säumen den Strand. Kein Ebbe-Problem.
+
+**Kendwa** liegt nur ein paar Kilometer südlich von Nungwi, ist aber deutlich ruhiger. Hier kann man zu jeder Tageszeit schwimmen. Die Vollmondpartys sind legendär.
+
+**Paje** an der Ostküste ist das Paradies für Kitesurfer. Bei Ebbe läuft das Wasser weit zurück und legt das Riff frei – einzigartiger Anblick.
+
+**Matemwe** im Nordosten ist ideal für Honeymooner und alle, die absolute Ruhe suchen. Schnorcheln beim Mnemba-Atoll ist ein absolutes Highlight.
+
+**Jambiani** im Südosten bietet ein langes weißes Sandband, traditionelles Fischerdorf-Feeling und ist deutlich günstiger als die Nordstrände.
+
+**Fumba Beach** in der Nähe von Fumba Town ist der perfekte Ausgangspunkt für Delfin-Touren und Bootsausflüge zu den nahegelegenen Sandbänken.',
+   bodyEn:"Zanzibar is famous for its incredible beaches. Here are the six most beautiful:
+
+**Nungwi** in the north is the most vibrant beach – perfect for sundowners and nightlife.
+
+**Kendwa** is just a few kilometres south of Nungwi but much quieter. The full moon parties are legendary.
+
+**Paje** on the east coast is paradise for kitesurfers. At low tide the reef is exposed – unique scenery.
+
+**Matemwe** in the northeast is ideal for honeymooners. Snorkelling at Mnemba Atoll is a highlight.
+
+**Jambiani** in the southeast offers a long stretch of white sand and a genuine fishing village feel.
+
+**Fumba Beach** near Fumba Town is the starting point for dolphin tours and boat trips."},
+  {id:2,emoji:'💰',cat:'investieren',
+   image:'images/Fumbatown_Stadtbild_am_Meer.jpg',
+   title:'Warum Fumba Town das smarteste Investment 2025 ist',
+   titleEn:'Why Fumba Town is the Smartest Investment of 2025',
+   author:'Corinna Taborek',date:'2025-02-08',
+   excerpt:'Frühkäufer profitieren enorm. Warum Fumba Town Sansibars interessantestes Immobilienprojekt ist.',
+   excerptEn:"Early buyers benefit enormously. Why Fumba Town is Zanzibar's most interesting real estate project.",
+   body:"Fumba Town ist kein gewöhnliches Immobilienprojekt. Es ist das erste nachhaltige Stadtprojekt Ostafrikas, entwickelt von einem deutschen Team in der ZIPA-Freihandelszone Sansibars.
+
+**Die Lage:** Nur 15 Minuten vom internationalen Flughafen, Meerblick, und dennoch ruhig gelegen. Eine Kombination, die in Sansibar selten ist.
+
+**Die Infrastruktur:** Beach Club, Pool, Restaurants, Arztpraxis, Supermarkt und Café – alles fußläufig erreichbar. Das macht Fumba Town zu einem echten Wohnprojekt, nicht nur einer Feriensiedlung.
+
+**Der Timing-Vorteil:** Wer jetzt kauft, profitiert von den günstigsten Einstiegspreisen. Mit dem Baufortschritt steigen die Preise erfahrungsgemäß deutlich.
+
+**Die Steuervorteile:** Als ZIPA-Freihandelszone bietet Fumba Town erhebliche Steuervergünstigungen. Kein Kapitalertrag, keine Erbschaftsteuer, keine Vermögensteuer auf ausländische Einkünfte.
+
+**Mietrendite:** 8–15% p.a. sind durch Kurzzeitvermietung möglich – Sansibars Tourismus wächst jährlich um rund 12%.
+
+Buche jetzt ein kostenloses 30-Minuten-Erstgespräch und erfahre, was zu deiner Situation passt.",
+   bodyEn:"Fumba Town is no ordinary real estate project. It is East Africa's first sustainable city project, developed by a German team in Zanzibar's ZIPA free trade zone.
+
+**The location:** Just 15 minutes from the international airport, sea views, yet peaceful.
+
+**The infrastructure:** Beach Club, pool, restaurants, medical practice, supermarket – all within walking distance.
+
+**The timing advantage:** Buying now means the best entry prices. As construction progresses, prices rise.
+
+**The tax advantages:** As a ZIPA free trade zone, Fumba Town offers significant tax benefits.
+
+**Rental yield:** 8–15% p.a. possible via short-term rental – Zanzibar tourism grows ~12% annually."},
+  {id:3,emoji:'🌴',cat:'leben',
+   image:'images/Strand_2.png',
+   title:'Als Rentner nach Sansibar – was du wissen musst',
+   titleEn:'Retiring to Zanzibar – What You Need to Know',
+   author:'Corinna Taborek',date:'2025-03-20',
+   excerpt:'Immer mehr europäische Rentner entdecken Sansibar. Hier erfährst du alles zu Visum, Kosten und Alltag.',
+   excerptEn:"More and more European retirees are discovering Zanzibar. Everything about visa, costs and daily life.",
+   body:"Sansibar wird für europäische Rentner immer attraktiver. Die Kombination aus Klima, Lebenshaltungskosten und Steuervorteilen ist kaum zu übertreffen.
+
+**Das Klima:** ~27°C ganzjährig, keine langen dunklen Winter, Meeresluft und Entspannung pur. Für viele ist das nach Jahrzehnten harter Arbeit der verdiente Ruhestand.
+
+**Die Kosten:** Deutlich günstiger als in Deutschland. Wer lokal lebt, kommt mit 1.500–2.500 EUR/Monat sehr gut aus. Wer in Fumba Town wohnt, hat höhere Kosten, dafür aber deutschen Komfort.
+
+**Das Visum:** Der Residence Permit Kategorie C ist speziell für Privatiers und Rentner konzipiert. Er wird jährlich oder alle zwei Jahre erneuert – kein Stress, kein Bürokratiedschungel.
+
+**Die Gesundheitsversorgung:** In Fumba Town gibt es eine deutschsprachige Ärztin direkt vor Ort. Stone Town hat Kliniken und Apotheken. Für schwere Erkrankungen empfiehlt sich eine internationale Krankenversicherung.
+
+**Mein Tipp:** Komm zunächst für einen längeren Aufenthalt (90 Tage mit Touristenvisum) und lerne die Insel wirklich kennen, bevor du eine endgültige Entscheidung triffst.",
+   bodyEn:"Zanzibar is becoming increasingly attractive for European retirees. The combination of climate, living costs and tax advantages is hard to beat.
+
+**The climate:** ~27°C year-round, no long dark winters, sea air and relaxation.
+
+**The costs:** Significantly cheaper than in Germany. Living locally, you can manage well on 1,500–2,500 EUR/month.
+
+**The visa:** Residence Permit Category C is specifically designed for private individuals and retirees.
+
+**Healthcare:** Fumba Town has a German-speaking doctor on-site. Stone Town has clinics and pharmacies.
+
+**My tip:** Come for a longer stay first (90 days) and get to know the island before deciding."},
+  {id:4,emoji:'🕌',cat:'kultur',
+   image:'images/Historische_Festung_in_Stonetown_6.png',
+   title:'Stone Town: Geschichte, Gewürze und die Türen von Sansibar',
+   titleEn:'Stone Town: History, Spices and the Doors of Zanzibar',
+   author:'Corinna Taborek',date:'2025-04-05',
+   excerpt:'Sansibars UNESCO-Weltkulturerbe ist eines der faszinierendsten Stadtzentren Afrikas.',
+   excerptEn:"Zanzibar's UNESCO World Heritage Site is one of Africa's most fascinating city centres.",
+   body:"Stone Town ist das Herz Sansibars und seit dem Jahr 2000 UNESCO-Weltkulturerbe. Was diese Stadt so besonders macht:
+
+**Die Geschichte:** Stone Town war jahrhundertelang das wichtigste Handelszentrum zwischen Arabien, Indien und Ostafrika. Gewürze, Elfenbein – und leider auch Sklaven – wurden hier gehandelt. Die Anglican Cathedral steht heute genau dort, wo einst der letzte Sklavenmarkt Ostafrikas war.
+
+**Die Türen:** Das bekannteste Wahrzeichen Stone Towns sind die reich verzierten Holztüren. Arabische Türen haben eine geschwungene Spitze, indische Türen einen rechteckigen Rahmen mit messingnen Buckeln. Jede Tür erzählt eine Geschichte.
+
+**Der Forodhani Night Market:** Abends verwandelt sich das Ufer in einen Street-Food-Markt. Gegrillter Oktopus, Zanzibar-Pizza und frische Zuckerrohrsäfte – ein Muss für jeden Besucher.
+
+**Die Spice Tour:** Sansibar heißt nicht umsonst 'Gewürzinsel'. Auf Plantagen rund um Stone Town wachsen Nelken, Vanille, Zimt und Kardamom. Eine geführte Tour dauert ca. 3 Stunden und ist unvergesslich.
+
+**Tipp:** Verlass die Hauptstraßen und verliere dich in den engen Gassen – die besten Entdeckungen macht man abseits der touristischen Routen.",
+   bodyEn:"Stone Town is the heart of Zanzibar and has been a UNESCO World Heritage Site since 2000.
+
+**The history:** Stone Town was for centuries the most important trading hub between Arabia, India and East Africa.
+
+**The doors:** Stone Town's most famous landmark is its ornately carved wooden doors. Arabic doors have a curved top, Indian doors a rectangular frame.
+
+**Forodhani Night Market:** In the evenings the waterfront becomes a street food market. Grilled octopus, Zanzibar pizza, fresh sugarcane juice.
+
+**The Spice Tour:** Zanzibar is called the 'Spice Island' for good reason. Cloves, vanilla, cinnamon and cardamom grow on plantations around Stone Town.
+
+**Tip:** Leave the main streets and get lost in the narrow alleys – the best discoveries are off the tourist routes."}
+];
+
+function getPosts(){try{const s=localStorage.getItem('zanblog');return s?JSON.parse(s):DEFAULT_POSTS;}catch(e){return DEFAULT_POSTS;}}
+function savePosts(p){try{localStorage.setItem('zanblog',JSON.stringify(p));}catch(e){}}
+
+// Language
+const ADMIN_PW = 'fumbatown2025';
+function getLang(){return localStorage.getItem('zanlang')||'de';}
+function setLang(l){localStorage.setItem('zanlang',l);applyLang(l);if(document.getElementById('langDrop'))document.getElementById('langDrop').classList.remove('open');}
+
+function toggleLangDrop(e){e.stopPropagation();document.getElementById('langDrop').classList.toggle('open');}
+document.addEventListener('click',()=>{const d=document.getElementById('langDrop');if(d)d.classList.remove('open');});
+
+function toggleMobile(){
+  const nl=document.getElementById('navLinks');
+  if(nl.style.display==='flex'){nl.style.display='';}
+  else{nl.style.cssText='display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:rgba(6,31,39,.97);padding:2rem;gap:1.5rem;z-index:150';}
+}
+
+function toggleFaq(btn){
+  const a=btn.nextElementSibling;const isOpen=a.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(x=>x.classList.remove('open'));
+  if(!isOpen){a.classList.add('open');btn.classList.add('open');}
+}
+
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function openBlogPost(id){
+  const posts=getPosts();const post=posts.find(p=>p.id===id);if(!post)return;
+  const lang=getLang();
+  const title=(lang==='en'&&post.titleEn)?post.titleEn:post.title;
+  const body=(lang==='en'&&post.bodyEn)?post.bodyEn:post.body;
+  const catLabels={reisen:{de:'Reisen',en:'Travel'},investieren:{de:'Investieren',en:'Invest'},leben:{de:'Leben',en:'Living'},kultur:{de:'Kultur',en:'Culture'}};
+  const d=new Date(post.date);
+  const ds=d.toLocaleDateString(lang==='en'?'en-GB':'de-DE',{day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('modalCat').textContent=(catLabels[post.cat]||{})[lang]||post.cat;
+  document.getElementById('modalTitle').textContent=title;
+  document.getElementById('modalDate').textContent=ds;
+  document.getElementById('modalAuthor').textContent=post.author||'';
+  const paras=body.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').split(/
+
++/).map(p=>`<p>${p.replace(/
+/g,'<br>')}</p>`).join('');
+  const imgHtml=post.image?`<img src="${post.image}" alt="${title}" style="width:100%;height:260px;object-fit:cover;border-radius:4px;margin-bottom:1.5rem;display:block">`:'' ;
+  document.getElementById('modalBody').innerHTML=imgHtml+paras;
+  document.getElementById('blogModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeBlogModal(){document.getElementById('blogModal').classList.remove('open');document.body.style.overflow='';}
+
+function filterBlog(cat,btn){
+  document.querySelectorAll('.bf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderBlog(cat);
+}
+
+function renderBlog(cat){
+  cat=cat||'all';
+  const grid=document.getElementById('blogGrid');if(!grid)return;
+  const posts=getPosts();
+  const lang=getLang();
+  const filtered=cat==='all'?posts:posts.filter(p=>p.cat===cat);
+  const catL={reisen:{de:'Reisen',en:'Travel'},investieren:{de:'Investieren',en:'Invest'},leben:{de:'Leben',en:'Living'},kultur:{de:'Kultur',en:'Culture'}};
+  const catC={reisen:'#147a8a',investieren:'#c9a84c',leben:'#2a8a5a',kultur:'#7a4aad'};
+  if(!filtered.length){grid.innerHTML='<div style="text-align:center;padding:3rem;color:var(--muted);grid-column:1/-1"><p>Keine Artikel in dieser Kategorie.</p></div>';return;}
+  const imgMap={reisen:IMGS.nungwi,investieren:IMGS.fumba,leben:IMGS.hero_home,kultur:IMGS.stone};
+  grid.innerHTML=filtered.map(p=>{
+    const title=(lang==='en'&&p.titleEn)?p.titleEn:p.title;
+    const excerpt=(lang==='en'&&p.excerptEn)?p.excerptEn:p.excerpt;
+    const cl=(catL[p.cat]||{})[lang]||p.cat;
+    const d=new Date(p.date).toLocaleDateString(lang==='en'?'en-GB':'de-DE',{day:'2-digit',month:'short',year:'numeric'});
+    const imgSrc=img(imgMap[p.cat]||IMGS.hero_home,600,320);
+    return`<div class="blog-card" onclick="openBlogPost(${p.id})">
+      <div class="bc-img"><img src="${imgSrc}" alt="${title}" loading="lazy" onerror="this.parentNode.style.background='var(--ocean)'"></div>
+      <div class="bc-body">
+        <span class="bc-cat" style="background:${catC[p.cat]||'var(--teal)'}18;color:${catC[p.cat]||'var(--teal)'}">${cl}</span>
+        <h3>${title}</h3><p>${excerpt}</p>
+        <div class="bc-meta"><span>${d}</span><span>${p.author||''}</span></div>
+      </div></div>`;
+  }).join('');
+}
+
+// Admin
+let editingPostId=null;
+function openAdmin(){const o=document.getElementById('adminOverlay');if(o){o.classList.add('open');document.body.style.overflow='hidden';}}
+function closeAdmin(){const o=document.getElementById('adminOverlay');if(o){o.classList.remove('open');document.body.style.overflow='';}}
+function doLogin(){
+  const pw=document.getElementById('adminPwInput').value;
+  if(pw===ADMIN_PW){
+    document.getElementById('adminLoginWrap').style.display='none';
+    document.getElementById('adminDash').style.display='block';
+    renderAdminPosts();
+  } else {document.getElementById('loginErr').style.display='block';}
+}
+function switchAdminTab(tab,btn){
+  document.querySelectorAll('.ap').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.atab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('ap-'+tab).classList.add('active');
+  btn.classList.add('active');
+  if(tab==='posts')renderAdminPosts();
+}
+function renderAdminPosts(){
+  const posts=getPosts();const list=document.getElementById('adminPostList');if(!list)return;
+  if(!posts.length){list.innerHTML='<p style="color:rgba(255,255,255,.35);font-size:.82rem">Noch keine Artikel.</p>';return;}
+  list.innerHTML=posts.map(p=>`<div class="post-row">
+    <div class="pr-info"><h4>${p.emoji||'📝'} ${p.title}</h4><p>${new Date(p.date).toLocaleDateString('de-DE')} · ${p.cat}</p></div>
+    <div class="pr-actions">
+      <button class="abtn sec" onclick="editPost(${p.id})">✏</button>
+      <button class="abtn danger" onclick="deletePost(${p.id})">🗑</button>
+    </div></div>`).join('');
+}
+function editPost(id){
+  const p=getPosts().find(x=>x.id===id);if(!p)return;
+  editingPostId=id;
+  document.getElementById('postTitle').value=p.title||'';
+  document.getElementById('postCat').value=p.cat||'reisen';
+  document.getElementById('postEmoji').value=p.emoji||'';
+  document.getElementById('postAuthor').value=p.author||'';
+  document.getElementById('postExcerpt').value=p.excerpt||'';
+  document.getElementById('postBody').value=p.body||'';
+  document.querySelectorAll('.ap').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.atab').forEach(x=>x.classList.remove('active'));
+  document.getElementById('ap-new').classList.add('active');
+  document.querySelectorAll('.atab')[1].classList.add('active');
+}
+function deletePost(id){
+  if(!confirm('Artikel wirklich löschen?'))return;
+  savePosts(getPosts().filter(p=>p.id!==id));
+  renderAdminPosts();renderBlog('all');
+}
+function savePost(){
+  const title=document.getElementById('postTitle').value.trim();
+  const excerpt=document.getElementById('postExcerpt').value.trim();
+  const body=document.getElementById('postBody').value.trim();
+  if(!title||!excerpt||!body){alert('Bitte Titel, Kurzbeschreibung und Text ausfüllen.');return;}
+  let posts=getPosts();
+  const pd={title,excerpt,body,
+    cat:document.getElementById('postCat').value,
+    emoji:document.getElementById('postEmoji').value||'📝',
+    author:document.getElementById('postAuthor').value||'Corinna Taborek',
+    date:new Date().toISOString().split('T')[0],
+    titleEn:'',excerptEn:'',bodyEn:''};
+  if(editingPostId){posts=posts.map(p=>p.id===editingPostId?{...p,...pd}:p);}
+  else{pd.id=Math.max(0,...posts.map(p=>p.id||0))+1;posts.unshift(pd);}
+  savePosts(posts);resetPostForm();renderBlog('all');
+  document.querySelectorAll('.ap').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.atab').forEach(x=>x.classList.remove('active'));
+  document.getElementById('ap-posts').classList.add('active');
+  document.querySelectorAll('.atab')[0].classList.add('active');
+  renderAdminPosts();
+}
+function resetPostForm(){
+  editingPostId=null;
+  ['postTitle','postEmoji','postExcerpt','postBody'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('postCat').value='reisen';
+  document.getElementById('postAuthor').value='Corinna Taborek';
+}
+function submitForm(){alert('Vielen Dank! Ich melde mich innerhalb von 24 Stunden.\n\nSofortiger Kontakt:\noffice@fumbatown.agency\n+49 155 630 586 76');}
+
+function applyLang(l){document.documentElement.lang=l;const flags={de:"🇩🇪",en:"🇬🇧"};document.getElementById("langFlag").textContent=flags[l]||"🌐";document.getElementById("langCode").textContent=l==="en"?"EN":"DE";document.querySelectorAll(".lang-opt").forEach(o=>o.classList.toggle("sel",o.getAttribute("onclick").includes("'"+l+"'")));}
+document.addEventListener("DOMContentLoaded",()=>applyLang(getLang()));
+</script>
+</body>
+</html>
