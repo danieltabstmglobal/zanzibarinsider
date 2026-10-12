@@ -64,8 +64,8 @@ module.exports = async (req, res) => {
   const replyTo = (from.match(/[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+/) || [])[0];
 
   let mailed = null, issued = null;
-  try { mailed = await sendMail(subject, lines.join('\n'), replyTo); } catch (e) { mailed = false; }
-  try { issued = await createIssue(subject, lines.join('\n'), [type, 'ungeprueft']); } catch (e) { issued = false; }
+  try { mailed = await sendMail(subject, lines.join('\n'), replyTo); } catch (e) { mailed = false; console.error('mail failed', e && e.code, e && e.responseCode, e && e.message); }
+  try { issued = await createIssue(subject, lines.join('\n'), [type, 'ungeprueft']); } catch (e) { issued = false; console.error('issue failed', e && e.message); }
   if (mailed === null && issued === null) return res.status(503).json({ ok: false });
   return res.status(mailed || issued ? 200 : 502).json({ ok: Boolean(mailed || issued) });
 };
