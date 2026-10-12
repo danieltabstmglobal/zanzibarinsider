@@ -201,7 +201,7 @@ details .in li{margin-bottom:.3rem}
 .site-footer h4{color:#fff;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.9rem}
 .site-footer a{color:rgba(255,255,255,.75);text-decoration:none;display:block;margin-bottom:.45rem}
 .site-footer a:hover{color:var(--lagoon)}
-.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
+.foot{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:30px}
 @media(max-width:860px){.foot{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.foot{grid-template-columns:1fr}}
 .legal{border-top:1px solid rgba(255,255,255,.12);margin-top:36px;padding-top:20px;font-size:.82rem;color:rgba(255,255,255,.55)}
@@ -268,3 +268,8 @@ details.cm summary{padding:10px 14px;font-size:.9rem}
 @media(max-width:560px){.projgrid{grid-template-columns:1fr}}
 .dark .entry{color:var(--ink)}
 .dark .entry a{color:var(--sea)}
+
+.about{padding:44px 0;border-top:1px solid var(--line)}
+.about h3{font-size:1.1rem;margin-bottom:.4rem}
+.about p{font-size:.93rem;color:var(--muted);margin:0}
+.about a{color:var(--ink-soft)}

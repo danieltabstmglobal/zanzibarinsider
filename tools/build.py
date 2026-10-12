@@ -19,7 +19,9 @@ WHATSAPP = "https://chat.whatsapp.com/CXYRM1ETmKn4OSwCPLrMH8?mode=gi_t"
 FUMBA_TIMES = "https://fumba.town/the-fumba-times/"
 MAIL = "office@fumbatown.agency"
 TEL = "+49 155 630 586 76"
+EDITORIAL_MAIL = "redaktion@zanzibarinsider.com"  # Platzhalter, Postfach einrichten
 
+NOINDEX = {"kunden"}  # per Direktlink erreichbar, nicht in Sitemap
 LANGS = ["de", "en"]               # später: "ru", "it"
 LANG_NAMES = {"de": "DE", "en": "EN", "ru": "RU", "it": "IT"}
 LOCALES = {"de": "de_DE", "en": "en_US", "ru": "ru_RU", "it": "it_IT"}
@@ -48,8 +50,7 @@ def lp():
 
 
 def url(page, anchor=""):
-    s = SLUGS[page][L] if L in SLUGS[page] else SLUGS[page]["en"]
-    path = f"{lp()}/{s}" if s else (lp() or "/")
+    path = page_path(page, L)
     return path + (f"#{anchor}" if anchor else "")
 
 
@@ -75,12 +76,13 @@ def loc(v):
 def nav_items():
     return [("index", tx("Start", "Home")), ("reisen", tx("Reisen", "Travel")),
             ("leben", tx("Leben auf Sansibar", "Living here")),
-            ("verzeichnis", tx("Verzeichnis", "Directory")), ("kunden", tx("Für Kunden", "For clients"))]
+            ("verzeichnis", tx("Verzeichnis", "Directory"))]
 
 
 def header(cur):
     items = "".join('<a href="%s"%s>%s</a>' % (url(p), ' aria-current="page"' if p == cur else "", t)
                     for p, t in nav_items())
+    items += '<a href="%s">%s</a>' % (url("verzeichnis", "tipp"), tx("Mitmachen", "Join in"))
     sw = "".join(
         '<a href="%s" hreflang="%s" lang="%s"%s>%s</a>' % (
             page_path(cur, l), l, l, ' aria-current="true"' if l == L else "", LANG_NAMES[l])
@@ -88,7 +90,7 @@ def header(cur):
     return f'''<header class="site-header"><div class="wrap">
 <a class="logo" href="{page_path('index', L)}">Zanzibar<span>Insider</span></a>
 <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-<nav class="nav">{items}<span class="langs">{sw}</span><a class="cta" href="{FT}/beratung">{tx("Beratung buchen", "Book a consultation")}</a></nav>
+<nav class="nav">{items}<span class="langs">{sw}</span></nav>
 </div></header>'''
 
 
@@ -101,17 +103,18 @@ def page_path(page, lang):
 def footer():
     return f'''<footer class="site-footer"><div class="wrap">
 <div class="foot">
-<div><a class="logo" href="{lp() or '/'}" style="display:inline-block;margin-bottom:.8rem">Zanzibar<span>Insider</span></a>
+<div><a class="logo" href="{page_path('index', L)}" style="display:inline-block;margin-bottom:.8rem">Zanzibar<span>Insider</span></a>
 <p>{tx("Der Wegweiser für Sansibar: zum Reisen, zum Leben und für alle, die mit uns ankommen.", "Your guide to Zanzibar: for travelling, for living here and for everyone arriving with us.")}</p></div>
-<div><h4>{tx("Entdecken", "Explore")}</h4><a href="{url('reisen')}">{tx("Reisen", "Travel")}</a><a href="{url('leben')}">{tx("Leben auf Sansibar", "Living here")}</a><a href="{url('verzeichnis')}">{tx("Verzeichnis", "Directory")}</a><a href="{url('kunden')}">{tx("Für Kunden", "For clients")}</a></div>
-<div><h4>{tx("Netzwerk", "Network")}</h4><a href="{FT}">FumbaTown Agency</a><a href="{WA_SZ}">Wohnsitz Ausland</a><a href="{PA}">Perspektive Ausland</a><a href="{FUMBA_TIMES}">The Fumba Times</a></div>
-<div><h4>{tx("Kontakt", "Contact")}</h4><a href="{FT}/beratung">{tx("Beratungstermin", "Book a call")}</a><a href="{FT}/investorenreise">{tx("Investorenreise", "Investor trip")}</a><a href="mailto:{MAIL}">{MAIL}</a><a href="tel:+4915563058676">{TEL}</a></div>
+<div><h4>{tx("Entdecken", "Explore")}</h4><a href="{url('reisen')}">{tx("Reisen", "Travel")}</a><a href="{url('leben')}">{tx("Leben auf Sansibar", "Living here")}</a><a href="{url('verzeichnis')}">{tx("Verzeichnis", "Directory")}</a></div>
+<div><h4>{tx("Initiiert von", "Initiated by")}</h4><a href="{FT}">FumbaTown Agency</a><a href="{PA}">Perspektive Ausland</a></div>
+<div><h4>{tx("Weiterlesen", "Further reading")}</h4><a href="{WA_SZ}">Wohnsitz Ausland</a><a href="{FUMBA_TIMES}">The Fumba Times</a></div>
+<div><h4>{tx("Kontakt", "Contact")}</h4><a href="{url('verzeichnis', 'tipp')}">{tx("Tipp einsenden", "Submit a tip")}</a><a href="mailto:{EDITORIAL_MAIL}">{EDITORIAL_MAIL}</a><a href="{WHATSAPP}">{tx("WhatsApp-Community", "WhatsApp community")}</a></div>
 </div>
-<div class="legal">{tx("Ein Angebot der FumbaTown Agency. Alle Angaben ohne Gewähr, keine Rechts-, Steuer- oder Anlageberatung.", "A service of FumbaTown Agency. All information without guarantee, not legal, tax or investment advice.")} <a style="display:inline" href="{FT}/rechtliches">{tx("Impressum & Rechtliches", "Legal notice")}</a></div>
+<div class="legal">{tx("Ein unabhängiges Community-Projekt, initiiert von FumbaTown Agency und Perspektive Ausland. Alle Angaben ohne Gewähr, keine Rechts-, Steuer- oder Anlageberatung.", "An independent community project, initiated by FumbaTown Agency and Perspektive Ausland. All information without guarantee, not legal, tax or investment advice.")} <a style="display:inline" href="{FT}/rechtliches">{tx("Impressum & Rechtliches", "Legal notice")}</a></div>
 </div></footer>'''
 
 
-def page(key, title, desc, body, hero_img):
+def page(key, title, desc, body, hero_img, noindex=False):
     canon = SITE + page_path(key, L)
     alts = "".join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{page_path(key, l)}">' for l in LANGS)
     alts += f'<link rel="alternate" hreflang="x-default" href="{SITE}{page_path(key, "de")}">'
@@ -123,6 +126,7 @@ def page(key, title, desc, body, hero_img):
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
+{'<meta name="robots" content="noindex, follow">' if noindex else ''}
 <link rel="canonical" href="{canon}">{alts}
 <meta property="og:type" content="website"><meta property="og:locale" content="{LOCALES[L]}">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
@@ -163,18 +167,12 @@ def cta_band(h, p, primary=None, second=None):
 </div></section>'''
 
 
-def network():
-    return f'''<section class="dark"><div class="wrap">
-<div class="head"><span class="eyebrow">{tx("Das Netzwerk dahinter", "The network behind it")}</span><h2>{tx("Drei Seiten, ein Weg", "Three sites, one path")}</h2>
-<p class="lead">{tx("Zanzibar Insider ist der Einstieg. Wenn aus Interesse ein Plan wird, übernehmen diese drei Seiten.", "Zanzibar Insider is the entry point. When interest turns into a plan, these three sites take over.")}</p></div>
-<div class="grid g3">
-<a class="net rv" href="{FT}"><small>{tx("Immobilien & Umzug", "Property & relocation")}</small><h3>FumbaTown Agency</h3>
-<p>{tx("Deine Ansprechpartner für Fumba Town: Beratung, Besichtigung, Investorenreise, Einrichtung und Betreuung vor Ort.", "Your contacts for Fumba Town: consulting, viewings, investor trip, furnishing and support on the ground.")}</p><span class="go">fumbatown.agency →</span></a>
-<a class="net rv" href="{WA_SZ}"><small>{tx("Steuern & Aufenthalt", "Tax & residency")}</small><h3>Wohnsitz Ausland</h3>
-<p>{tx("Das Länderprofil Sansibar mit Steuern, Aufenthalt, Rente und Kosten. Dazu 7 Schritte für den Wegzug aus Deutschland, Österreich und der Schweiz.", "The Zanzibar country profile with tax, residency, pensions and costs, plus 7 steps for leaving Germany, Austria or Switzerland (in German).")}</p><span class="go">wohnsitzausland.com →</span></a>
-<a class="net rv" href="{PA}"><small>{tx("Plan B & Community", "Plan B & community")}</small><h3>Perspektive Ausland</h3>
-<p>{tx("Seminare, Reisen und Workshops für alle, die sich mehr internationale Möglichkeiten schaffen wollen, plus persönliche Beratung.", "Seminars, trips and workshops for everyone who wants more international options, plus personal consulting (in German).")}</p><span class="go">perspektiveausland.com →</span></a>
-</div></div></section>'''
+def about_block():
+    return f'''<section class="about"><div class="wrap narrow">
+<h3>{tx("Wer steckt dahinter?", "Who's behind this?")}</h3>
+<p>{tx('Zanzibar Insider wurde von Menschen gestartet, die selbst auf Sansibar leben und arbeiten, unter anderem vom Team der <a href="' + FT + '">FumbaTown Agency</a> und von <a href="' + PA + '">Perspektive Ausland</a>. Die Seite ist offen für alle, die die Insel kennen: Tipps, Korrekturen und Erfahrungsberichte sind willkommen. Wer zu Steuern und Wegzug tiefer einsteigen will, findet das <a href="' + WA_SZ + '">Länderprofil Sansibar</a> bei Wohnsitz Ausland.',
+'Zanzibar Insider was started by people who live and work on Zanzibar themselves, among others the team of <a href="' + FT + '">FumbaTown Agency</a> and <a href="' + PA + '">Perspektive Ausland</a>. The site is open to everyone who knows the island: tips, corrections and first-hand reports are welcome. For a deeper dive into taxes and leaving your home country, see the <a href="' + WA_SZ + '">Zanzibar country profile</a> at Wohnsitz Ausland.')}</p>
+</div></section>'''
 
 
 def contribute_band():
@@ -246,8 +244,8 @@ def p_index(d, c):
     quick = "".join(f'<a class="qcat rv" href="{url("verzeichnis")}?c={x["id"]}"><span>{x["icon"]}</span><b>{loc(x)}</b></a>' for x in cats[:6])
     body = hero("strand_luftbild.webp", tx("Indischer Ozean · Tansania", "Indian Ocean · Tanzania"),
                 tx("Sansibar. <em>Entdecken.</em> Bleiben. Ankommen.", "Zanzibar. <em>Discover.</em> Stay. Arrive."),
-                tx("Strände und Stone Town für die Reise, Visa, Steuern und Alltag für ein Leben auf der Insel und die persönliche Begleitung für alle, die mit uns umziehen.",
-                   "Beaches and Stone Town for your trip, visas, taxes and daily life for living on the island, and personal support for everyone moving with us."),
+                tx("Strände und Stone Town für die Reise, Visa, Kosten und Alltag für ein Leben auf der Insel, und Tipps von Menschen, die hier wohnen.",
+                   "Beaches and Stone Town for your trip, visas, costs and daily life for living on the island, and tips from people who live here."),
                 f'<div class="btn-row"><a class="btn btn-primary" href="{url("reisen")}">{tx("Reise planen", "Plan a trip")}</a><a class="btn btn-ghost" href="{url("leben")}">{tx("Hier leben", "Live here")}</a></div>',
                 short=False)
     body += f'''
@@ -258,9 +256,9 @@ def p_index(d, c):
 <a class="path rv" href="{url('leben')}"><img src="/img/fumbatown_stadtbild_am_meer.webp" alt="Fumba Town" loading="lazy">
 <div class="body"><span class="tag">B · {tx('Für Expats', 'For expats')}</span><h3>{tx('Länger bleiben', 'Stay longer')}</h3>
 <p>{tx('Aufenthalt, Ruhestandsvisum, Steuern, Kosten, Einkaufen und Anwältin.', 'Residency, retirement visa, taxes, costs, shopping and lawyer.')}</p><span class="go">{tx('Leben auf Sansibar →', 'Living on Zanzibar →')}</span></div></a>
-<a class="path rv" href="{url('kunden')}"><img src="/img/fumbatown_projekt_luftaufnahme_stadtansicht.webp" alt="Fumba Town" loading="lazy">
-<div class="body"><span class="tag">C · {tx('Für Kunden', 'For clients')}</span><h3>{tx('Mit uns ankommen', 'Arrive with us')}</h3>
-<p>{tx('Für Kunden der FumbaTown Agency und von Perspektive Ausland: dein Weg, deine Checkliste, deine Links.', 'For clients of FumbaTown Agency and Perspektive Ausland: your path, your checklist, your links.')}</p><span class="go">{tx('Zum Kundenbereich →', 'To the client area →')}</span></div></a>
+<a class="path rv" href="{url('verzeichnis')}"><img src="/img/fumbatown_projekt_luftaufnahme_stadtansicht.webp" alt="Fumba Town" loading="lazy">
+<div class="body"><span class="tag">C · {tx('Für Bewohner', 'For residents')}</span><h3>{tx('Schon hier?', 'Already here?')}</h3>
+<p>{tx('Verzeichnis, Märkte, Ärzte, Handwerker und die Community.', 'Directory, markets, doctors, tradespeople and the community.')}</p><span class="go">{tx('Zum Verzeichnis →', 'To the directory →')}</span></div></a>
 </div></div></section>
 
 <section><div class="wrap"><div class="grid g4">
@@ -276,48 +274,18 @@ def p_index(d, c):
 <div class="qgrid">{quick}</div>
 <div class="btn-row"><a class="btn btn-primary" href="{url('verzeichnis')}">{tx('Zum Verzeichnis', 'Open the directory')}</a><a class="btn btn-line" href="{url('verzeichnis', 'tipp')}">{tx('Tipp einsenden', 'Submit a tip')}</a></div>
 </div></section>
-''' + invest_showcase() + f'''
+''' + f'''
 <section><div class="wrap"><div class="split">
 <div class="rv"><span class="eyebrow">A · {tx('Für Reisende', 'For travellers')}</span><h2>{tx('Eine Insel, <em>viele Gesichter</em>', 'One island, <em>many faces</em>')}</h2>
 <p class="lead">{tx('Arabische, indische, persische und afrikanische Einflüsse treffen auf türkisfarbenes Wasser. Vom lebhaften Nungwi bis ins ruhige Jambiani findest du den Strand, der zu dir passt.', 'Arabic, Indian, Persian and African influences meet turquoise water. From lively Nungwi to quiet Jambiani you will find the beach that suits you.')}</p>
 <div class="btn-row"><a class="btn btn-primary" href="{url('reisen')}">{tx('Reiseführer öffnen', 'Open the travel guide')}</a></div></div>
 <div class="media rv"><img src="/img/bunte_boote.webp" alt="{tx('Bunte Boote vor Sansibar', 'Colourful boats off Zanzibar')}" loading="lazy"></div>
 </div></div></section>
-''' + magazine_band() + network() + contribute_band() + cta_band(
-        tx("Fragen zu Sansibar?", "Questions about Zanzibar?"),
-        tx("Im kostenlosen Erstgespräch klären wir, ob Sansibar zu deinem Plan passt, ob als Reise, als Zweitwohnsitz oder als neuer Lebensmittelpunkt.",
-           "In a free first call we clarify whether Zanzibar fits your plan, as a trip, a second home or a new centre of life."))
+''' + magazine_band() + contribute_band() + about_block()
     return (tx("Zanzibar Insider: Sansibar entdecken, bleiben, ankommen", "Zanzibar Insider: discover, stay and arrive on Zanzibar"),
-            tx("Der Wegweiser für Sansibar: Reiseführer, Leben und Steuern auf der Insel, Insider-Verzeichnis und Kundenbereich der FumbaTown Agency.",
-               "Your guide to Zanzibar: travel guide, living and taxes on the island, insider directory and the FumbaTown Agency client area."),
+            tx("Der unabhängige Wegweiser für Sansibar: Reisetipps, Leben und Alltag auf der Insel und ein Verzeichnis mit Empfehlungen von Menschen vor Ort.",
+               "The independent guide to Zanzibar: travel tips, living and daily life on the island, and a directory of recommendations from people on the ground."),
             body, "strand_luftbild.webp")
-
-
-def invest_showcase():
-    items = [
-        ("CheiChei Living", "39.900", tx("Läden, Studios und Wohnungen in Holzbauweise: der Einstieg in Fumba Town.", "Shops, studios and flats in timber construction: the entry into Fumba Town.")),
-        ("Mwangani Apartments", "47.900", tx("Fertiggestellt, mit Terrasse, Garten oder Balkon im Stadtpark.", "Completed, with terrace, garden or balcony in the town park.")),
-        ("The SOUL Fumba", "129.900", tx("Möblierte Resort-Apartments mit Lagunenpool.", "Furnished resort apartments with lagoon pool.")),
-        ("Moyoni Bay", "160.900", tx("Reihenhäuser mit Park und Pool nur für Bewohner.", "Terraced houses with park and pool for residents only.")),
-    ]
-    cards = "".join(f'<a class="proj rv" href="{FT}/projekte"><b>{n}</b><span>{tx("ab", "from")} {p} USD</span><p>{t}</p></a>' for n, p, t in items)
-    return f'''<section class="dark" id="investieren"><div class="wrap">
-<div class="split">
-<div class="rv"><span class="eyebrow">{tx('Investieren', 'Invest')}</span><h2>Fumba Town. <em>{tx('Das Zuhause zum Ankommen.', 'The place to arrive.')}</em></h2>
-<p class="lead">{tx('Das nachhaltige Stadtprojekt in der ZIPA-Freezone, 15 bis 25 Minuten vom Flughafen. Wohnen, vermieten oder beides, mit Weg zum Aufenthaltstitel ab 100.000 USD.', 'The sustainable town project in the ZIPA free zone, 15 to 25 minutes from the airport. Live in it, rent it out or both, with a path to a residence permit from 100,000 USD.')}</p>
-<div class="btn-row"><a class="btn btn-primary" href="{FT}/fumba-town">{tx('Fumba Town entdecken', 'Discover Fumba Town')}</a><a class="btn btn-ghost" href="{FT}/investorenreise">{tx('Investorenreise', 'Investor trip')}</a></div></div>
-<div class="media rv"><img src="/img/fumbatown_projekt_luftaufnahme_stadtansicht.webp" alt="{tx('Luftaufnahme Fumba Town', 'Aerial view of Fumba Town')}" loading="lazy"></div>
-</div>
-<div class="projgrid">{cards}</div>
-<p class="small" style="margin-top:1rem;color:rgba(255,255,255,.6)">{tx('Preise ab, Stand Oktober 2026, ohne Gewähr. Aktuelle Preise und Zahlungspläne auf', 'Prices from, as of October 2026, without guarantee. Current prices and payment plans at')} <a href="{FT}/projekte">fumbatown.agency/projekte</a>. {tx('Kein Anlagerat.', 'Not investment advice.')}</p>
-<div class="grid g2" style="margin-top:2.2rem">
-<div class="net rv" style="background:rgba(255,255,255,.04)"><small>{tx('Weitere Projekte in Fumba Town', 'More projects in Fumba Town')}</small><h3>Between Horses</h3>
-<p>{tx('Sansibars erste Permakultur-Ranch im Aufbau mit Reitbahn und Café. Beteiligung als Manager, Shareholder oder Investor möglich, Start 2027 geplant.', "Zanzibar's first permaculture ranch, under construction, with riding arena and café. Participation as manager, shareholder or investor possible, launch planned for 2027.")}</p>
-<a class="go" href="https://greenshield.top/ranch/">greenshield.top/ranch →</a></div>
-<div class="net rv" style="background:rgba(255,255,255,.04)"><small>{tx('Leben im Quartier', 'Life in the neighbourhood')}</small><h3>Sebule Spa</h3>
-<p>{tx('Spa und medizinisch-ästhetische Behandlungen in Fumba Town unter ärztlicher Leitung.', 'Spa and medical-aesthetic treatments in Fumba Town under medical supervision.')}</p>
-<a class="go" href="https://www.medspa.africa">medspa.africa →</a></div>
-</div></div></section>'''
 
 
 def magazine_band():
@@ -453,11 +421,12 @@ def p_reisen(d, c):
 <div class="card rv"><h3>{tx('Nach Stone Town', 'To Stone Town')}</h3><p>{tx('10 bis 15 Min., Taxi ca. 10 bis 15 USD.', '10 to 15 min, taxi approx. 10 to 15 USD.')}</p></div>
 <div class="card rv"><h3>{tx('Nach Nungwi / Paje', 'To Nungwi / Paje')}</h3><p>{tx('45 bis 90 Min., Taxi ca. 50 bis 80 USD, Mietwagen empfohlen.', '45 to 90 min, taxi approx. 50 to 80 USD, rental car recommended.')}</p></div>
 </div></div></section>
-''' + contribute_band() + cta_band(
-        tx("Lass dir deine Reise zusammenstellen", "Let us put your trip together"),
-        tx("Du willst Fumba Town vor Ort sehen? Auf der Investorenreise bekommst du Projekt, Insel und Menschen an einem Termin.", "Want to see Fumba Town in person? On the investor trip you get the project, the island and the people in one visit."),
-        primary=(f"{FT}/investorenreise", tx("Investorenreise ansehen", "See the investor trip")),
-        second=(f"{FT}/besichtigung", tx("Besichtigung anfragen", "Request a viewing")))
+''' + contribute_band() + f'''
+<section class="cta-band"><div class="wrap narrow">
+<h2>{tx("Länger bleiben als zwei Wochen?", "Staying longer than two weeks?")}</h2>
+<p class="lead">{tx("Viele kommen als Urlauber und bleiben. Was du über Aufenthalt, Kosten und Alltag wissen solltest, steht auf der Seite Leben auf Sansibar.", "Many arrive as travellers and stay. What you need to know about residence, costs and daily life is on the Living in Zanzibar page.")}</p>
+<div class="btn-row"><a class="btn btn-primary" href="{url('leben')}">{tx("Leben auf Sansibar", "Living in Zanzibar")}</a></div>
+</div></section>'''
     return (tx("Sansibar Reiseführer: Reisezeit, Strände, Visum & Tipps | Zanzibar Insider", "Zanzibar travel guide: best time, beaches, visa & tips | Zanzibar Insider"),
             tx("Beste Reisezeit, die schönsten Strände, Stone Town, Einreise mit eVisa, Mietwagen, Taxi und Notfallnummern für deine Reise nach Sansibar.",
                "Best time to go, the most beautiful beaches, Stone Town, entry with eVisa, car rental, taxis and emergency numbers for your trip to Zanzibar."),
@@ -490,7 +459,7 @@ def p_leben(d, c):
     sl = "".join(f"<li>{tx(a, b)}</li>" for a, b in steps)
     body += f'''
 <nav class="subnav" aria-label="{tx('Seitenübersicht', 'On this page')}"><div class="wrap">
-<a href="#warum">{tx('Warum Sansibar', 'Why Zanzibar')}</a><a href="#aufenthalt">{tx('Aufenthalt', 'Residency')}</a><a href="#steuern">{tx('Steuern', 'Taxes')}</a><a href="#kosten">{tx('Kosten & Wohnen', 'Costs & housing')}</a><a href="#alltag">{tx('Alltag', 'Daily life')}</a><a href="#recht">{tx('Anwältin', 'Lawyer')}</a><a href="#investieren">{tx('Investieren', 'Invest')}</a>
+<a href="#warum">{tx('Warum Sansibar', 'Why Zanzibar')}</a><a href="#aufenthalt">{tx('Aufenthalt', 'Residency')}</a><a href="#steuern">{tx('Steuern', 'Taxes')}</a><a href="#kosten">{tx('Kosten & Wohnen', 'Costs & housing')}</a><a href="#alltag">{tx('Alltag', 'Daily life')}</a><a href="#recht">{tx('Anwältin', 'Lawyer')}</a>
 </div></nav>
 
 <section id="warum"><div class="wrap">
@@ -531,6 +500,7 @@ def p_leben(d, c):
 <p><a class="btn btn-line btn-sm" href="{FT}/golden-visa">{tx('Mehr zum Golden Visa', 'More on the golden visa')}</a></p></div></details>
 </div>
 <div class="note"><strong>{tx('Wichtig:', 'Important:')}</strong> {tx('Eine Staatsbürgerschaft ist praktisch nicht erreichbar, doppelte Staatsbürgerschaft gibt es nicht. Die Residence Permit allein löst noch keine Steueransässigkeit aus. Bearbeitungszeiten und Gebühren können sich ändern.', 'Citizenship is practically unattainable, dual citizenship does not exist. The residence permit alone does not trigger tax residency. Processing times and fees may change.')}</div>
+<p class="small muted" style="margin-top:1rem">{tx('Persönliche Begleitung bei Aufenthaltstiteln und Immobilienkauf bietet unter anderem die', 'Personal support with residence permits and property purchases is offered by, among others,')} <a href="{FT}/beratung">FumbaTown Agency</a>.</p>
 </div></section>
 
 <section id="steuern"><div class="wrap">
@@ -563,6 +533,7 @@ def p_leben(d, c):
 <li>{tx('Das Land gehört dem Staat. Ausländer erhalten ein Leasehold über 33 Jahre, verlängerbar bis 99 Jahre.', 'The land belongs to the state. Foreigners receive a 33-year leasehold, extendable to 99 years.')}</li>
 <li>{tx('Nur in ZIPA-genehmigten Projekten kaufen, Entwickler-Zertifikat prüfen, Zusagen schriftlich festhalten.', 'Only buy in ZIPA-approved projects, check the developer certificate, get promises in writing.')}</li>
 <li>{tx('Erst mieten und ausprobieren: Wohnungen in Fumba Town ab etwa 350 € im Monat.', 'Rent first and try it out: flats in Fumba Town from about €350 a month.')}</li></ul>
+<p style="margin-top:1rem">{tx('Neue Wohnprojekte mit Aufenthaltsoption gibt es in den ZIPA-Freezones, zum Beispiel in Fumba Town. Übersicht und aktuelle Preise:', 'New housing projects with a residence option are available in the ZIPA free zones, for example in Fumba Town. Overview and current prices:')} <a href="{FT}/projekte">fumbatown.agency/projekte</a></p>
 <div class="btn-row"><a class="btn btn-primary" href="{FT}/wohnung-mieten">{tx('Wohnung mieten', 'Rent a flat')}</a><a class="btn btn-line" href="{FT}/moebelpakete">{tx('Möbelpakete', 'Furniture packages')}</a></div></div>
 <div class="rv"><h3>{tx('Einkaufen: Shopping-Weisheiten', 'Shopping wisdom')}</h3>
 <ul class="ticks"><li>{tx('Wenn du etwas Wichtiges siehst, kauf es gleich. Importware kann beim nächsten Besuch weg sein.', 'If you see something important, buy it right away. Imported goods may be gone on your next visit.')}</li>
@@ -584,11 +555,7 @@ def p_leben(d, c):
 <div class="btn-row"><a class="btn btn-primary" href="tel:+255776162033">+255 776 162 033</a><a class="btn btn-line" href="https://wa.me/255776162033">WhatsApp</a></div></div>
 <div class="entries rv">{ve('clara-wella')}</div>
 </div></div></section>
-''' + invest_showcase() + magazine_band() + contribute_band() + cta_band(
-        tx("Sprich mit jemandem, der es kennt", "Talk to someone who knows"),
-        tx("Im kostenlosen Erstgespräch gehen wir deine Situation durch: Aufenthalt, Steuern, Immobilie und Zeitplan.", "In the free first call we go through your situation: residency, taxes, property and timeline."),
-        primary=(f"{FT}/beratung", tx("Kostenloses Erstgespräch", "Free first consultation")),
-        second=(WA_SZ, tx("Länderprofil lesen", "Read the country profile")))
+''' + magazine_band() + contribute_band()
     return (tx("Leben auf Sansibar: Aufenthalt, Steuern, Kosten | Zanzibar Insider", "Living on Zanzibar: residency, taxes, costs | Zanzibar Insider"),
             tx("Auswandern nach Sansibar: Ruhestandsvisum, Golden Visa, Steuern in den ZIPA-Freezones, Kosten, Wohnen, Einkaufen und Alltag für Expats.",
                "Moving to Zanzibar: retirement visa, golden visa, taxes in the ZIPA free zones, costs, housing, shopping and daily life for expats."),
@@ -627,7 +594,7 @@ def p_verzeichnis(d, c):
 <li>{tx('Du bist selbst Anbieter? Gib an, dass du Inhaber bist, damit wir es transparent kennzeichnen.', 'You are a provider yourself? State that you are the owner so we can label it transparently.')}</li></ul></div>
 <div class="rv">{submit_form(cats)}</div>
 </div></div></section>
-''' + magazine_band() + network()
+''' + magazine_band()
     return (tx("Sansibar-Verzeichnis: Mietwagen, Ärzte, Anwältin, Einkaufen | Zanzibar Insider", "Zanzibar directory: car rental, doctors, lawyer, shopping | Zanzibar Insider"),
             tx("Insider-Verzeichnis für Sansibar mit geprüften und ungeprüften Tipps zu Mietwagen, Gesundheit, Recht, Einkaufen und Essen, ergänzt durch Kommentare der Community.",
                "Insider directory for Zanzibar with checked and unchecked tips on car rental, health, legal, shopping and food, complemented by community comments."),
@@ -742,14 +709,14 @@ def build_lang(lang, d, c):
         title, desc, body, img = fn(d, c)
         rel = page_path(key, lang).strip("/")
         fname = (rel + ".html") if (rel and key != "index") else (rel + "/index.html" if rel else "index.html")
-        write(fname, page(key, title, desc, body, img))
+        write(fname, page(key, title, desc, body, img, noindex=(key in NOINDEX)))
 
 
 def main():
     d, c = load_dir()
     for lang in LANGS:
         build_lang(lang, d, c)
-    urls = [SITE + page_path(k, l) for l in LANGS for k in PAGES]
+    urls = [SITE + page_path(k, l) for l in LANGS for k in PAGES if k not in NOINDEX]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + "".join(f"<url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n")
     write("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
