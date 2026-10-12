@@ -1,0 +1,347 @@
+{
+  "updated": "2026-10-12",
+  "categories": [
+    {
+      "id": "auto",
+      "de": "Auto & Transport",
+      "en": "Cars & transport",
+      "icon": "🚗"
+    },
+    {
+      "id": "gesundheit",
+      "de": "Gesundheit & Notfall",
+      "en": "Health & emergency",
+      "icon": "🏥"
+    },
+    {
+      "id": "recht",
+      "de": "Recht & Behörden",
+      "en": "Legal & authorities",
+      "icon": "⚖️"
+    },
+    {
+      "id": "einkaufen",
+      "de": "Einkaufen & Liefern",
+      "en": "Shopping & delivery",
+      "icon": "🛒"
+    },
+    {
+      "id": "essen",
+      "de": "Essen & Café",
+      "en": "Food & coffee",
+      "icon": "☕"
+    },
+    {
+      "id": "community",
+      "de": "Community & Medien",
+      "en": "Community & media",
+      "icon": "💬"
+    },
+    {
+      "id": "wellness",
+      "de": "Wellness & Freizeit",
+      "en": "Wellness & leisure",
+      "icon": "🧘"
+    }
+  ],
+  "entries": [
+    {
+      "id": "kibabu-cars",
+      "cat": "auto",
+      "name": "Kibabu Cars",
+      "status": "geprueft",
+      "loc": "Zanzibar Airport / Stone Town",
+      "text": {
+        "de": "Unsere Empfehlung für den Mietwagen. Reisende berichten, dass sich ein Auto oft kurzfristig per E-Mail organisieren lässt, Übergabe auch am Flughafen oder Hafen. Fahrzeug, Preis und Zusatzkosten vorab schriftlich bestätigen lassen.",
+        "en": "Our pick for a rental car. Travellers report that a car can often be arranged at short notice by email, with hand-over at the airport or port. Have vehicle, price and extra costs confirmed in writing beforehand."
+      },
+      "tip": {
+        "de": "Ein Reisebericht nennt rund 35 USD pro Tag für einen SUV, dazu etwa 10 USD für den vorläufigen tansanischen Führerschein. Richtwert, bitte aktuell erfragen.",
+        "en": "One travel report mentions about 35 USD per day for an SUV plus about 10 USD for the temporary Tanzanian driving licence. Indicative only, please ask for current prices."
+      },
+      "source": "FumbaTown Agency, Reisebericht",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "karibu-kwetu",
+      "cat": "auto",
+      "name": "Karibu Kwetu Zanzibar Tours & Transfers",
+      "status": "ungeprueft",
+      "loc": "Stone Town",
+      "text": {
+        "de": "Anbieter für Mietwagen und Transfers, auf Vergleichsportalen gut bewertet. Von uns noch nicht selbst geprüft.",
+        "en": "Provider of rental cars and transfers, well rated on comparison portals. Not yet checked by us."
+      },
+      "source": "Vergleichsportale (Stand 2026)",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "taxi-flughafen",
+      "cat": "auto",
+      "name": {
+        "de": "Taxi vom Flughafen",
+        "en": "Taxi from the airport"
+      },
+      "status": "ungeprueft",
+      "loc": "Flughafen Zanzibar (ZNZ)",
+      "text": {
+        "de": "Preis immer vor der Fahrt vereinbaren. Richtwerte: Fumba Town 15 bis 25 USD, Stone Town 10 bis 15 USD, Nungwi oder Paje 50 bis 80 USD. Jeder Fahrer kennt Fumba Town. Eine verlässliche Taxi-Nummer ergänzen wir nach Prüfung, schreib uns gern deine Erfahrung.",
+        "en": "Always agree the price before the ride. Indicative: Fumba Town 15 to 25 USD, Stone Town 10 to 15 USD, Nungwi or Paje 50 to 80 USD. Every driver knows Fumba Town. We add a reliable taxi number once checked, tell us your experience."
+      },
+      "source": "FumbaTown Agency",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "mnazi-mmoja",
+      "cat": "gesundheit",
+      "name": "Mnazi Mmoja Hospital",
+      "status": "ungeprueft",
+      "loc": "Vuga Street, Stone Town",
+      "phone": "+255 24 22 31614",
+      "text": {
+        "de": "Staatliches Hauptkrankenhaus der Insel in Stone Town, seit 1923. Für ernste Behandlungen weichen viele nach Daressalam oder Nairobi aus. Ambulanz laut Verzeichnis: 0773 204740. Nummern können sich ändern.",
+        "en": "The island's main public hospital in Stone Town, since 1923. For serious treatment many go to Dar es Salaam or Nairobi. Ambulance according to listing: 0773 204740. Numbers may change."
+      },
+      "source": "Öffentliche Verzeichnisse",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "urban-care",
+      "cat": "gesundheit",
+      "name": "Urban Care Clinic",
+      "status": "ungeprueft",
+      "loc": "Pavilion, Fumba Town",
+      "url": "https://www.urbancare.clinic",
+      "text": {
+        "de": "Klinik im Pavilion in Fumba Town mit medizinischen Leistungen rund um die Uhr, dazu Physiotherapie. Angaben aus der Fumba Times.",
+        "en": "Clinic at the Pavilion in Fumba Town offering medical services around the clock, plus physiotherapy. Information from The Fumba Times."
+      },
+      "source": "The Fumba Times, Ausgabe 26",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "zanaid",
+      "cat": "gesundheit",
+      "name": "ZanAid Clinic",
+      "status": "ungeprueft",
+      "loc": "60 Chukwani Road, nahe Flughafen",
+      "phone": "0777 777112",
+      "text": {
+        "de": "Private Klinik nahe dem Flughafen, praktisch bei Ankunft oder Abreise.",
+        "en": "Private clinic near the airport, handy on arrival or departure."
+      },
+      "source": "Öffentliche Verzeichnisse",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "notruf",
+      "cat": "gesundheit",
+      "name": {
+        "de": "Notruf 112 · Polizei 999",
+        "en": "Emergency 112 · Police 999"
+      },
+      "status": "ungeprueft",
+      "loc": "Ganz Tansania",
+      "text": {
+        "de": "112 ist der allgemeine Notruf, 999 die Polizei. Rettungsdienste sind nicht überall zuverlässig, deshalb Reiseversicherung mit Rückholung und eine Klinik in der Nähe der Unterkunft kennen.",
+        "en": "112 is the general emergency number, 999 the police. Ambulance services are not reliable everywhere, so have travel insurance with repatriation and know a clinic near your accommodation."
+      },
+      "source": "Reiseinformationen",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "clara-wella",
+      "cat": "recht",
+      "name": "Clara Wella, Lawyer Sansibar",
+      "status": "geprueft",
+      "loc": "Sansibar",
+      "phone": "+255 776 162 033",
+      "text": {
+        "de": "Unsere Anwältin vor Ort (Candour Wakili). Sie begleitet Aufenthaltstitel wie das Ruhestandsvisum, Immobilienkäufe und Verträge. Erreichbar per Anruf oder WhatsApp.",
+        "en": "Our lawyer on the ground (Candour Wakili). She supports residence permits such as the retirement visa, property purchases and contracts. Reachable by phone or WhatsApp."
+      },
+      "source": "FumbaTown Agency",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "darajani",
+      "cat": "einkaufen",
+      "name": "Darajani Market",
+      "status": "ungeprueft",
+      "loc": "Stone Town",
+      "text": {
+        "de": "Der große Markt in Stone Town für Obst, Gemüse, Fisch, Fleisch und Gewürze. Feilschen gehört dazu, frühmorgens ist es am frischesten.",
+        "en": "Stone Town's big market for fruit, vegetables, fish, meat and spices. Bargaining is part of it, the early morning is freshest."
+      },
+      "source": "The Fumba Times, Ausgabe 26",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "kwetu-kwetu",
+      "cat": "einkaufen",
+      "name": "Kwetu Kwetu Community Market",
+      "status": "ungeprueft",
+      "loc": "Fumba Town (monatlich)",
+      "text": {
+        "de": "Beliebter Community-Markt mit Selbstgemachtem, Bio-Produkten und Kunsthandwerk. Er findet nach den Angaben der Fumba Times regelmäßig am ersten Samstag des Monats statt. Termin vorab prüfen.",
+        "en": "Popular community market with home-made goods, organic produce and crafts. According to The Fumba Times it is held regularly on the first Saturday of the month. Check the date beforehand."
+      },
+      "source": "The Fumba Times, Ausgabe 26",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "jad-africa",
+      "cat": "einkaufen",
+      "name": "Jad Africa",
+      "status": "ungeprueft",
+      "loc": "Airport Road",
+      "text": {
+        "de": "Haushaltswaren, Bettwäsche und Handtücher in großer Auswahl, bekannt als Anlaufstelle für die erste Ausstattung.",
+        "en": "Household goods, bedding and towels in a wide choice, known as a first stop for kitting out a home."
+      },
+      "source": "The Fumba Times, Ausgabe 26",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "lieferdienste",
+      "cat": "einkaufen",
+      "name": {
+        "de": "Pakacha und fumba.store",
+        "en": "Pakacha and fumba.store"
+      },
+      "status": "ungeprueft",
+      "loc": "Online / Lieferung",
+      "url": "https://fumba.store",
+      "text": {
+        "de": "Lieferdienste, die die Fumba Times als Alternative zum Einkaufen vor Ort nennt. Praktisch, weil Importware nicht immer im Regal liegt.",
+        "en": "Delivery services that The Fumba Times names as an alternative to shopping in person. Handy because imported goods are not always on the shelf."
+      },
+      "source": "The Fumba Times, Ausgabe 26",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "zanzibar-coffee-house",
+      "cat": "essen",
+      "name": "Zanzibar Coffee House",
+      "status": "ungeprueft",
+      "loc": "Stone Town",
+      "text": {
+        "de": "Café mit guter Kaffeeauswahl, Kuchen und leichten Gerichten in einem historischen Haus.",
+        "en": "Café with a good coffee selection, cakes and light meals in a historic house."
+      },
+      "source": "Reiseführer (Frommer's)",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "amore-mio",
+      "cat": "essen",
+      "name": "Amore Mio",
+      "status": "ungeprueft",
+      "loc": "Shangani Street, Stone Town",
+      "text": {
+        "de": "Italienisch mit Meerblick: Pizza und Pasta, laut älterer Angabe etwa 9 bis 15 USD. Teilweise nur Barzahlung, bitte vor Ort prüfen.",
+        "en": "Italian with an ocean view: pizza and pasta, according to an older listing about 9 to 15 USD. Partly cash only, please check on site."
+      },
+      "source": "Reiseführer (Frommer's)",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "la-fenice",
+      "cat": "essen",
+      "name": "La Fenice",
+      "status": "ungeprueft",
+      "loc": "Shangani Road, Stone Town",
+      "text": {
+        "de": "Italienisches Restaurant, in Reiseführern als gute Mittagsadresse genannt.",
+        "en": "Italian restaurant, named in travel guides as a good lunch address."
+      },
+      "source": "Reiseführer (Audley Travel)",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "da-luigi",
+      "cat": "essen",
+      "name": "Da Luigi Ristorante Pizzeria",
+      "status": "ungeprueft",
+      "loc": "Creek Road, Mkunazini",
+      "text": {
+        "de": "Pizza aus dem Holzofen und frische Pasta nach neapolitanischer Art.",
+        "en": "Wood-fired pizza and fresh pasta in the Neapolitan style."
+      },
+      "source": "Öffentliche Verzeichnisse",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "forodhani",
+      "cat": "essen",
+      "name": "Forodhani Night Market",
+      "status": "ungeprueft",
+      "loc": "Forodhani Gardens, Stone Town",
+      "text": {
+        "de": "Abends am Wasser: gegrillter Fisch und Oktopus, Zanzibar-Pizza und frisch gepresste Säfte. Preise vor dem Bestellen erfragen.",
+        "en": "In the evening by the water: grilled fish and octopus, Zanzibar pizza and freshly pressed juices. Ask the price before you order."
+      },
+      "source": "FumbaTown Agency",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "whatsapp-fumba",
+      "cat": "community",
+      "name": {
+        "de": "WhatsApp-Community Fumba Town",
+        "en": "WhatsApp community Fumba Town"
+      },
+      "status": "geprueft",
+      "loc": "Online",
+      "url": "https://chat.whatsapp.com/CXYRM1ETmKn4OSwCPLrMH8?mode=gi_t",
+      "text": {
+        "de": "Austausch der Bewohner und Freunde von Fumba Town: Fragen, Empfehlungen, Bestellgemeinschaften. Es gibt weitere Gruppen, etwa zum Bestellen und Liefern lassen von Milch- und Fleischprodukten. Frag dort oder bei uns nach dem Einstieg.",
+        "en": "Exchange for residents and friends of Fumba Town: questions, recommendations, ordering groups. There are further groups, for example for ordering and delivery of dairy and meat products. Ask there or with us how to join."
+      },
+      "source": "FumbaTown Agency",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "fumba-times",
+      "cat": "community",
+      "name": "The Fumba Times",
+      "status": "geprueft",
+      "loc": "Fumba Town",
+      "url": "https://fumba.town/the-fumba-times/",
+      "text": {
+        "de": "Das kostenlose Magazin aus Fumba Town über Wirtschaft, Gesellschaft, Kultur und Entwicklung der Insel, mit Veranstaltungstipps, Gesundheits- und Einkaufsratgebern. Vierteljährlich als PDF, dazu laufend Artikel online.",
+        "en": "The free magazine from Fumba Town on business, society, culture and development of the island, with event tips plus health and shopping guides. Quarterly as a PDF, with articles online in between."
+      },
+      "source": "fumba.town",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "sebule-spa",
+      "cat": "wellness",
+      "name": "Sebule Spa (MedSpa Africa)",
+      "status": "geprueft",
+      "loc": "Fumba Town",
+      "url": "https://www.medspa.africa",
+      "text": {
+        "de": "Spa für Haut- und Körperpflege in Fumba Town: Gesichtsbehandlungen, medizinisch-ästhetische Facials unter ärztlicher Leitung, Massagen und Körperbehandlungen. Dienstags geschlossen.",
+        "en": "Spa for skin and body care in Fumba Town: facials, medical-aesthetic facials under medical supervision, massages and body treatments. Closed on Tuesdays."
+      },
+      "source": "medspa.africa",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "between-horses",
+      "cat": "wellness",
+      "name": "Between Horses Ranch",
+      "status": "geprueft",
+      "loc": "Fumba Town",
+      "url": "https://greenshield.top/ranch/",
+      "text": {
+        "de": "Sansibars erste Permakultur-Ranch im Aufbau, mit Reitbahn, Café und Programmen für Kinder. Start ist für 2027 geplant. Beteiligung als Manager, Shareholder oder Investor möglich, kommerzielle Angebote erst nach der Gewerbelizenz.",
+        "en": "Zanzibar's first permaculture ranch, under construction, with riding arena, café and programmes for children. Launch is planned for 2027. Participation as manager, shareholder or investor is possible, commercial offers only after the business licence."
+      },
+      "source": "greenshield.top",
+      "checked": "2026-10-12"
+    }
+  ]
+}
