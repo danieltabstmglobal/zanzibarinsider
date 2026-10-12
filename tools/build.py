@@ -108,7 +108,7 @@ def footer():
 <div><h4>{tx("Entdecken", "Explore")}</h4><a href="{url('reisen')}">{tx("Reisen", "Travel")}</a><a href="{url('leben')}">{tx("Leben auf Sansibar", "Living here")}</a><a href="{url('verzeichnis')}">{tx("Verzeichnis", "Directory")}</a></div>
 <div><h4>{tx("Initiiert von", "Initiated by")}</h4><a href="{FT}">FumbaTown Agency</a><a href="{PA}">Perspektive Ausland</a></div>
 <div><h4>{tx("Weiterlesen", "Further reading")}</h4><a href="{WA_SZ}">Wohnsitz Ausland</a><a href="{FUMBA_TIMES}">The Fumba Times</a></div>
-<div><h4>{tx("Kontakt", "Contact")}</h4><a href="{url('verzeichnis', 'tipp')}">{tx("Tipp einsenden", "Submit a tip")}</a><a href="mailto:{EDITORIAL_MAIL}">{EDITORIAL_MAIL}</a><a href="{WHATSAPP}">{tx("WhatsApp-Community", "WhatsApp community")}</a></div>
+<div><h4>{tx("Kontakt", "Contact")}</h4><a href="{url('verzeichnis', 'tipp')}">{tx("Tipp einsenden", "Submit a tip")}</a><a href="mailto:{EDITORIAL_MAIL}">{EDITORIAL_MAIL}</a><a href="{url('verzeichnis')}?c=gruppen">{tx("WhatsApp-Gruppen", "WhatsApp groups")}</a></div>
 </div>
 <div class="legal">{tx("Ein unabhängiges Community-Projekt, initiiert von FumbaTown Agency und Perspektive Ausland. Alle Angaben ohne Gewähr, keine Rechts-, Steuer- oder Anlageberatung.", "An independent community project, initiated by FumbaTown Agency and Perspektive Ausland. All information without guarantee, not legal, tax or investment advice.")} <a style="display:inline" href="{FT}/rechtliches">{tx("Impressum & Rechtliches", "Legal notice")}</a></div>
 </div></footer>'''
@@ -180,7 +180,7 @@ def contribute_band():
 <div class="split"><div class="rv"><span class="eyebrow">{tx("Mitmachen", "Join in")}</span>
 <h2>{tx("Du kennst Sansibar? <em>Hilf anderen.</em>", "You know Zanzibar? <em>Help others.</em>")}</h2>
 <p class="lead">{tx("Das beste Wissen steckt in den Menschen vor Ort. Empfiehl uns den guten Anwalt, den fairen Fahrer, das Café mit dem echten Espresso. Wir prüfen Tipps redaktionell und kennzeichnen, was geprüft ist.", "The best knowledge sits with the people on the island. Recommend the good lawyer, the fair driver, the café with real espresso. We review tips editorially and mark what has been checked.")}</p>
-<div class="btn-row"><a class="btn btn-primary" href="{url('verzeichnis', 'tipp')}">{tx("Tipp einsenden", "Submit a tip")}</a><a class="btn btn-line" href="{WHATSAPP}">{tx("WhatsApp-Community", "WhatsApp community")}</a></div></div>
+<div class="btn-row"><a class="btn btn-primary" href="{url('verzeichnis', 'tipp')}">{tx("Tipp einsenden", "Submit a tip")}</a><a class="btn btn-line" href="{url('verzeichnis')}?c=gruppen">{tx("WhatsApp-Gruppen", "WhatsApp groups")}</a></div></div>
 <div class="rv"><div class="card"><h3>{tx("So funktioniert es", "How it works")}</h3>
 <ul class="ticks"><li>{tx("Du schickst einen Tipp oder eine Korrektur.", "You send a tip or a correction.")}</li><li>{tx("Wir prüfen Angaben und Kontakt.", "We check details and contact.")}</li><li>{tx("Der Eintrag erscheint als <b>geprüft</b> oder als <b>ungeprüft</b> mit Quelle und Datum.", "The entry appears as <b>checked</b> or <b>unchecked</b> with source and date.")}</li><li>{tx("Alle können kommentieren. Kommentare erscheinen nach Freigabe.", "Everyone can comment. Comments appear after approval.")}</li></ul></div></div>
 </div></div></section>'''
@@ -233,7 +233,7 @@ def submit_form(cats):
 <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 <label class="chk"><input type="checkbox" name="ok" required> {tx("Ich bin einverstanden, dass mein Tipp redaktionell geprüft und veröffentlicht werden kann. Persönliche Angaben bleiben intern.", "I agree that my tip may be reviewed and published. Personal details stay internal.")}</label>
 <button class="btn btn-primary" type="submit">{tx("Tipp absenden", "Send tip")}</button><span class="fmsg" role="status"></span>
-<p class="small muted">{tx("Klappt das Formular nicht, schreib an", "If the form fails, write to")} <a href="mailto:{MAIL}?subject=Zanzibar%20Insider%20Tipp">{MAIL}</a>.</p>
+<p class="small muted">{tx("Klappt das Formular nicht, schreib an", "If the form fails, write to")} <a href="mailto:{EDITORIAL_MAIL}?subject=Zanzibar%20Insider%20Tipp">{EDITORIAL_MAIL}</a>.</p>
 </form>'''
 
 
@@ -539,13 +539,13 @@ def p_leben(d, c):
 <ul class="ticks"><li>{tx('Wenn du etwas Wichtiges siehst, kauf es gleich. Importware kann beim nächsten Besuch weg sein.', 'If you see something important, buy it right away. Imported goods may be gone on your next visit.')}</li>
 <li>{tx('Auf Märkten wird verhandelt, Preise vorher vergleichen.', 'Markets expect bargaining, compare prices beforehand.')}</li>
 <li>{tx('Lokal ist oft besser: Gewürze, Obst, Fisch, Kunsthandwerk.', 'Local is often better: spices, fruit, fish, crafts.')}</li>
-<li>{tx('Lieferdienste und Bestellgemeinschaften in der WhatsApp-Community sparen Wege.', 'Delivery services and ordering groups in the WhatsApp community save trips.')}</li></ul></div>
+<li>{tx('Lieferdienste und Bestellgemeinschaften in den WhatsApp-Gruppen (siehe Verzeichnis) sparen Wege.', 'Delivery services and ordering groups in the WhatsApp groups (see directory) save trips.')}</li></ul></div>
 </div></div></section>
 
 <section id="alltag"><div class="wrap">
 <div class="head"><span class="eyebrow">{tx('Alltag', 'Daily life')}</span><h2>{tx('Einkaufen, essen, <em>ankommen</em>', 'Shopping, eating, <em>settling in</em>')}</h2>
 <p class="lead">{tx('Wo bekomme ich was? Eine Auswahl aus dem Verzeichnis, die wir laufend erweitern. Kommentare und Korrekturen sind willkommen.', 'Where do I get what? A selection from the directory, which we keep expanding. Comments and corrections are welcome.')}</p></div>
-<div class="grid g3 entries">{ve('soul-beach-hotel')}{ve('darajani')}{ve('kwetu-kwetu')}{ve('lieferdienste')}{ve('zanzibar-coffee-house')}{ve('amore-mio')}{ve('whatsapp-fumba')}</div>
+<div class="grid g3 entries">{ve('soul-beach-hotel')}{ve('darajani')}{ve('kwetu-kwetu')}{ve('lieferdienste')}{ve('zanzibar-coffee-house')}{ve('amore-mio')}{ve('whatsapp-supermarkt-fumba')}</div>
 <div class="btn-row"><a class="btn btn-primary" href="{url('verzeichnis')}">{tx('Ganzes Verzeichnis', 'Whole directory')}</a><a class="btn btn-line" href="{url('verzeichnis', 'tipp')}">{tx('Tipp einsenden', 'Submit a tip')}</a></div>
 </div></section>
 
@@ -579,6 +579,7 @@ def p_verzeichnis(d, c):
 <div>{badge('geprueft')} <span>{tx('Von uns persönlich geprüft oder empfohlen, mit Quelle und Datum.', 'Checked or recommended by us in person, with source and date.')}</span></div>
 <div>{badge('ungeprueft')} <span>{tx('Hinweis aus Community oder öffentlicher Quelle, noch nicht von uns bestätigt. Bitte vor Ort prüfen.', 'Tip from the community or a public source, not yet confirmed by us. Please verify on site.')}</span></div>
 </div>
+<div class="note rv" style="margin:0 0 18px">{tx("<strong>WhatsApp-Gruppen:</strong> Auf Sansibar läuft vieles über Gruppen: Supermärkte, Bestellgemeinschaften, Nachbarschaft, Handwerker. Wir sammeln sie unter „WhatsApp-Gruppen“. Kennst du eine? Schick uns Name und Einladungslink über „Tipp einsenden“.", "<strong>WhatsApp groups:</strong> A lot on Zanzibar runs through groups: supermarkets, ordering circles, neighbourhoods, tradespeople. We collect them under WhatsApp groups. Know one? Send us the name and invite link via Submit a tip.")}</div>
 <div class="filters"><input id="q" type="search" placeholder="{tx('Suchen: Auto, Arzt, Pizza …', 'Search: car, doctor, pizza …')}" aria-label="{tx('Suchen', 'Search')}">
 <div class="chips">{chips}</div>
 <label class="chk"><input type="checkbox" id="onlyok"> {tx('Nur geprüfte Einträge', 'Checked entries only')}</label></div>
@@ -608,14 +609,22 @@ def p_kunden(d, c):
                 tx("Willkommen, <em>wir bringen dich an</em>", "Welcome, <em>we will get you there</em>"),
                 tx("Dein Bereich als Kunde der FumbaTown Agency oder von Perspektive Ausland: dein Weg, die Checkliste für die Reise und alle Links an einem Ort.",
                    "Your area as a client of FumbaTown Agency or Perspektive Ausland: your path, the checklist for the trip and all links in one place."),
+                f'<div class="btn-row"><a class="btn btn-primary" href="{FT}/beratung">{tx("Termin bei der FumbaTown Agency buchen", "Book an appointment with FumbaTown Agency")}</a><a class="btn btn-ghost" href="{FT}/investorenreise">{tx("Investorenreise ansehen", "See the investor trip")}</a></div>',
                 crumbs=crumbs(tx("Für Kunden", "For clients")))
 
     def stp(h, t, href, lab):
         return f'<div class="step rv"><h3>{h}</h3><p>{t}</p><p style="margin-top:.6rem"><a href="{href}">{lab} →</a></p></div>'
     body += f'''
 <nav class="subnav" aria-label="{tx('Seitenübersicht', 'On this page')}"><div class="wrap">
-<a href="#weg">{tx('Dein Weg', 'Your path')}</a><a href="#checkliste">{tx('Checkliste', 'Checklist')}</a><a href="#fumbatown">FumbaTown Agency</a><a href="#perspektive">Perspektive Ausland</a><a href="#wohnsitz">Wohnsitz Ausland</a><a href="#vorort">{tx('Vor Ort', 'On the ground')}</a><a href="#kontakt">{tx('Kontakt', 'Contact')}</a>
+<a href="#termin">{tx('Termin', 'Appointment')}</a><a href="#weg">{tx('Dein Weg', 'Your path')}</a><a href="#checkliste">{tx('Checkliste', 'Checklist')}</a><a href="#fumbatown">FumbaTown Agency</a><a href="#perspektive">Perspektive Ausland</a><a href="#wohnsitz">Wohnsitz Ausland</a><a href="#vorort">{tx('Vor Ort', 'On the ground')}</a><a href="#kontakt">{tx('Kontakt', 'Contact')}</a>
 </div></nav>
+
+<section class="dark" id="termin"><div class="wrap"><div class="split">
+<div class="rv"><span class="eyebrow">{tx('Dein nächster Schritt', 'Your next step')}</span><h2>{tx('Termin bei der <em>FumbaTown Agency</em> buchen', 'Book an appointment with <em>FumbaTown Agency</em>')}</h2>
+<p class="lead">{tx('Im Erstgespräch klären wir deine Ziele, dein Budget und deinen Zeitplan. Kostenlos, unverbindlich und per Video.', 'In the first call we clarify your goals, budget and timeline. Free, non-binding and by video.')}</p></div>
+<div class="rv"><div class="btn-row" style="margin-top:0"><a class="btn btn-primary" href="{FT}/beratung">{tx('Jetzt Termin buchen', 'Book an appointment now')}</a><a class="btn btn-ghost" href="{FT}/rueckruf">{tx('Rückruf anfordern', 'Request a call back')}</a></div>
+<p class="small" style="margin-top:1rem">{tx('Du wirst zur Terminbuchung der FumbaTown Agency weitergeleitet.', 'You will be taken to the booking page of FumbaTown Agency.')}</p></div>
+</div></div></section>
 
 <section id="weg"><div class="wrap">
 <div class="head"><span class="eyebrow">{tx('Dein Weg', 'Your path')}</span><h2>{tx('Wo stehst du <em>gerade?</em>', 'Where are you <em>right now?</em>')}</h2>
@@ -672,7 +681,7 @@ def p_kunden(d, c):
 
 <section id="vorort" class="band"><div class="wrap">
 <div class="head"><span class="eyebrow">{tx('Vor Ort', 'On the ground')}</span><h2>{tx('Wichtige Kontakte <em>für den Alltag</em>', 'Important contacts <em>for daily life</em>')}</h2></div>
-<div class="grid g3 entries">{ve('clara-wella')}{ve('whatsapp-fumba')}{ve('fumba-times')}</div>
+<div class="grid g3 entries">{ve('clara-wella')}{ve('whatsapp-supermarkt-fumba')}{ve('fumba-times')}</div>
 <div class="btn-row"><a class="btn btn-primary" href="{url('verzeichnis')}">{tx('Zum Verzeichnis', 'To the directory')}</a></div>
 </div></section>
 
@@ -687,6 +696,8 @@ def p_kunden(d, c):
 </table></div>
 </div></div></section>
 ''' + contribute_band()
+    body = re.sub(r'href="(https://fumbatown\.agency(?:/[^"?#]*)?)"',
+                  lambda m: 'href="%s?utm_source=zanzibarinsider&utm_medium=website&utm_campaign=kunden"' % m.group(1), body)
     return (tx("Für Kunden: FumbaTown Agency & Perspektive Ausland | Zanzibar Insider", "For clients: FumbaTown Agency & Perspektive Ausland | Zanzibar Insider"),
             tx("Dein Bereich als Kunde der FumbaTown Agency und von Perspektive Ausland: Weg, Checkliste, Links und Kontakt.",
                "Your area as a client of FumbaTown Agency and Perspektive Ausland: path, checklist, links and contact."),

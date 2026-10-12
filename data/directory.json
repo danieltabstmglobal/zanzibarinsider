@@ -44,6 +44,12 @@
       "icon": "💬"
     },
     {
+      "id": "gruppen",
+      "de": "WhatsApp-Gruppen",
+      "en": "WhatsApp groups",
+      "icon": "👥"
+    },
+    {
       "id": "wellness",
       "de": "Wellness & Freizeit",
       "en": "Wellness & leisure",
@@ -308,18 +314,18 @@
       "checked": "2026-10-12"
     },
     {
-      "id": "whatsapp-fumba",
-      "cat": "community",
+      "id": "whatsapp-supermarkt-fumba",
+      "cat": "gruppen",
       "name": {
-        "de": "WhatsApp-Community Fumba Town",
-        "en": "WhatsApp community Fumba Town"
+        "de": "WhatsApp-Gruppe 24h-Supermarkt Fumba Town",
+        "en": "WhatsApp group: 24h supermarket Fumba Town"
       },
       "status": "geprueft",
-      "loc": "Online",
+      "loc": "Fumba Town",
       "url": "https://chat.whatsapp.com/CXYRM1ETmKn4OSwCPLrMH8?mode=gi_t",
       "text": {
-        "de": "Austausch der Bewohner und Freunde von Fumba Town: Fragen, Empfehlungen, Bestellgemeinschaften. Es gibt weitere Gruppen, etwa zum Bestellen und Liefern lassen von Milch- und Fleischprodukten. Frag dort oder bei uns nach dem Einstieg.",
-        "en": "Exchange for residents and friends of Fumba Town: questions, recommendations, ordering groups. There are further groups, for example for ordering and delivery of dairy and meat products. Ask there or with us how to join."
+        "de": "Die WhatsApp-Gruppe des 24-Stunden-Supermarkts in Fumba Town, nach unserer Einschätzung derzeit der Supermarkt mit dem reichhaltigsten Angebot auf Sansibar. Daneben gibt es weitere Gruppen, etwa zum Bestellen und Liefernlassen von Milch- und Fleischprodukten. Kennst du eine? Melde sie uns.",
+        "en": "The WhatsApp group of the 24-hour supermarket in Fumba Town, in our assessment currently the supermarket with the widest range on Zanzibar. There are further groups, for example for ordering and delivery of dairy and meat products. Know one? Tell us."
       },
       "source": "FumbaTown Agency",
       "checked": "2026-10-12"
