@@ -352,7 +352,7 @@ def p_reisen(d, c):
                 crumbs=crumbs(tx("Reisen", "Travel")))
     body += f'''
 <nav class="subnav" aria-label="{tx('Seitenübersicht', 'On this page')}"><div class="wrap">
-<a href="#reisezeit">{tx('Reisezeit', 'When to go')}</a><a href="#straende">{tx('Strände', 'Beaches')}</a><a href="#stonetown">Stone Town</a><a href="#erlebnisse">{tx('Erlebnisse', 'Experiences')}</a><a href="#einreise">{tx('Einreise', 'Entry')}</a><a href="#unterwegs">{tx('Unterwegs', 'Getting around')}</a><a href="#notfall">{tx('Notfall', 'Emergency')}</a><a href="#anreise">{tx('Anreise', 'Getting here')}</a>
+<a href="#reisezeit">{tx('Reisezeit', 'When to go')}</a><a href="#straende">{tx('Strände', 'Beaches')}</a><a href="#stonetown">Stone Town</a><a href="#erlebnisse">{tx('Erlebnisse', 'Experiences')}</a><a href="#einreise">{tx('Einreise', 'Entry')}</a><a href="#unterwegs">{tx('Unterwegs', 'Getting around')}</a><a href="#notfall">{tx('Notfall', 'Emergency')}</a><a href="#auszeit">{tx('Auszeit', 'Getaways')}</a><a href="#anreise">{tx('Anreise', 'Getting here')}</a>
 </div></nav>
 
 <section id="reisezeit"><div class="wrap">
@@ -432,6 +432,12 @@ def p_reisen(d, c):
 <div class="grid g3 entries">{ve('notruf')}{ve('mnazi-mmoja')}{ve('urban-care')}</div>
 <div class="note">{tx('Nummern ändern sich. Speichere vor der Reise Nummer und Adresse deiner Unterkunft sowie die Hotline deiner Auslandskrankenversicherung offline.', 'Numbers change. Before the trip save the address and number of your accommodation and the hotline of your travel health insurance offline.')}</div>
 </div></section>
+
+<section id="auszeit"><div class="wrap"><div class="split">
+<div class="rv"><span class="eyebrow">{tx('Übernachten & Auszeit', 'Stays & getaways')}</span><h2>{tx('Mal <em>woanders</em> aufwachen', 'Wake up <em>somewhere else</em>')}</h2>
+<p class="lead">{tx('Zum Verlängern des Urlaubs, für ein Wochenende oder wenn du in Fumba Town lebst und einen anderen schönen Ort auf der Insel besuchen willst.', 'To extend your holiday, for a weekend, or when you live in Fumba Town and want to visit another beautiful place on the island.')}</p></div>
+<div class="entries rv">{ve('soul-beach-hotel')}</div>
+</div></div></section>
 
 <section id="anreise" class="band"><div class="wrap">
 <div class="head"><span class="eyebrow">{tx('Anreise', 'Getting here')}</span><h2>{tx('So kommst du <em>auf die Insel</em>', 'How to get <em>to the island</em>')}</h2>
@@ -568,7 +574,7 @@ def p_leben(d, c):
 <section id="alltag"><div class="wrap">
 <div class="head"><span class="eyebrow">{tx('Alltag', 'Daily life')}</span><h2>{tx('Einkaufen, essen, <em>ankommen</em>', 'Shopping, eating, <em>settling in</em>')}</h2>
 <p class="lead">{tx('Wo bekomme ich was? Eine Auswahl aus dem Verzeichnis, die wir laufend erweitern. Kommentare und Korrekturen sind willkommen.', 'Where do I get what? A selection from the directory, which we keep expanding. Comments and corrections are welcome.')}</p></div>
-<div class="grid g3 entries">{ve('darajani')}{ve('kwetu-kwetu')}{ve('lieferdienste')}{ve('zanzibar-coffee-house')}{ve('amore-mio')}{ve('whatsapp-fumba')}</div>
+<div class="grid g3 entries">{ve('soul-beach-hotel')}{ve('darajani')}{ve('kwetu-kwetu')}{ve('lieferdienste')}{ve('zanzibar-coffee-house')}{ve('amore-mio')}{ve('whatsapp-fumba')}</div>
 <div class="btn-row"><a class="btn btn-primary" href="{url('verzeichnis')}">{tx('Ganzes Verzeichnis', 'Whole directory')}</a><a class="btn btn-line" href="{url('verzeichnis', 'tipp')}">{tx('Tipp einsenden', 'Submit a tip')}</a></div>
 </div></section>
 

@@ -2,6 +2,12 @@
   "updated": "2026-10-12",
   "categories": [
     {
+      "id": "unterkunft",
+      "de": "Unterkunft & Auszeit",
+      "en": "Stays & getaways",
+      "icon": "🏨"
+    },
+    {
       "id": "auto",
       "de": "Auto & Transport",
       "en": "Cars & transport",
@@ -45,6 +51,23 @@
     }
   ],
   "entries": [
+    {
+      "id": "soul-beach-hotel",
+      "cat": "unterkunft",
+      "name": "The Soul Zanzibar Beach Hotel and Spa",
+      "status": "geprueft",
+      "loc": {
+        "de": "Sansibar (nicht zu verwechseln mit The SOUL in Paje)",
+        "en": "Zanzibar (not to be confused with The SOUL in Paje)"
+      },
+      "phone": "+255 775 600 900",
+      "text": {
+        "de": "Unser Tipp für Urlaub oder zum Verlängern, aber auch für alle, die in Fumba Town oder anderswo auf der Insel leben und einmal einen schönen anderen Ort besuchen möchten. Ansprechpartnerin ist Jola, die Managerin des Hotels. Anruf oder WhatsApp.",
+        "en": "Our tip for a holiday or an extension, and also for anyone living in Fumba Town or elsewhere on the island who wants to visit a different, beautiful place. Your contact is Jola, the hotel's manager. Call or WhatsApp."
+      },
+      "source": "FumbaTown Agency",
+      "checked": "2026-10-12"
+    },
     {
       "id": "kibabu-cars",
       "cat": "auto",

@@ -29,7 +29,7 @@
 <div><span class="badge un">Ungeprüft</span> <span>Hinweis aus Community oder öffentlicher Quelle, noch nicht von uns bestätigt. Bitte vor Ort prüfen.</span></div>
 </div>
 <div class="filters"><input id="q" type="search" placeholder="Suchen: Auto, Arzt, Pizza …" aria-label="Suchen">
-<div class="chips"><button class="chip on" data-cat="">Alle</button><button class="chip" data-cat="auto">🚗 Auto & Transport</button><button class="chip" data-cat="gesundheit">🏥 Gesundheit & Notfall</button><button class="chip" data-cat="recht">⚖️ Recht & Behörden</button><button class="chip" data-cat="einkaufen">🛒 Einkaufen & Liefern</button><button class="chip" data-cat="essen">☕ Essen & Café</button><button class="chip" data-cat="community">💬 Community & Medien</button><button class="chip" data-cat="wellness">🧘 Wellness & Freizeit</button></div>
+<div class="chips"><button class="chip on" data-cat="">Alle</button><button class="chip" data-cat="unterkunft">🏨 Unterkunft & Auszeit</button><button class="chip" data-cat="auto">🚗 Auto & Transport</button><button class="chip" data-cat="gesundheit">🏥 Gesundheit & Notfall</button><button class="chip" data-cat="recht">⚖️ Recht & Behörden</button><button class="chip" data-cat="einkaufen">🛒 Einkaufen & Liefern</button><button class="chip" data-cat="essen">☕ Essen & Café</button><button class="chip" data-cat="community">💬 Community & Medien</button><button class="chip" data-cat="wellness">🧘 Wellness & Freizeit</button></div>
 <label class="chk"><input type="checkbox" id="onlyok"> Nur geprüfte Einträge</label></div>
 <p class="muted small" id="count"></p>
 <div class="grid g2 entries" id="entries"><article class="entry rv" id="e-between-horses" data-cat="wellness" data-status="geprueft" data-search="between horses ranch fumba town sansibars erste permakultur-ranch im aufbau, mit reitbahn, café und programmen für kinder. start ist für 2027 geplant. beteiligung als manager, shareholder oder investor möglich, kommerzielle angebote erst nach der gewerbelizenz.">
@@ -75,6 +75,15 @@
 <p class="src small muted">Redaktionell geprüft · Quelle: fumba.town · Stand 2026-10-12</p>
 <details class="cm"><summary>Kommentare (0)</summary><div class="in"><p class="muted small">Noch keine Kommentare.</p>
 <form class="cform" data-entry="fumba-times"><input name="name" placeholder="Dein Name" maxlength="60" required>
+<textarea name="text" rows="3" placeholder="Deine Erfahrung, Preis, Korrektur …" maxlength="1200" required></textarea>
+<input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+<button class="btn btn-line btn-sm" type="submit">Kommentar senden</button><span class="fmsg small" role="status"></span></form></div></details></article><article class="entry rv" id="e-soul-beach-hotel" data-cat="unterkunft" data-status="geprueft" data-search="the soul zanzibar beach hotel and spa sansibar (nicht zu verwechseln mit the soul in paje) unser tipp für urlaub oder zum verlängern, aber auch für alle, die in fumba town oder anderswo auf der insel leben und einmal einen schönen anderen ort besuchen möchten. ansprechpartnerin ist jola, die managerin des hotels. anruf oder whatsapp.">
+<div class="ehead"><span class="badge ok">✓ Geprüft</span><h3>The Soul Zanzibar Beach Hotel and Spa</h3></div>
+<p>Unser Tipp für Urlaub oder zum Verlängern, aber auch für alle, die in Fumba Town oder anderswo auf der Insel leben und einmal einen schönen anderen Ort besuchen möchten. Ansprechpartnerin ist Jola, die Managerin des Hotels. Anruf oder WhatsApp.</p>
+<ul class="meta"><li>📍 Sansibar (nicht zu verwechseln mit The SOUL in Paje)</li><li>📞 <a href="tel:+255775600900">+255 775 600 900</a></li></ul>
+<p class="src small muted">Redaktionell geprüft · Quelle: FumbaTown Agency · Stand 2026-10-12</p>
+<details class="cm"><summary>Kommentare (0)</summary><div class="in"><p class="muted small">Noch keine Kommentare.</p>
+<form class="cform" data-entry="soul-beach-hotel"><input name="name" placeholder="Dein Name" maxlength="60" required>
 <textarea name="text" rows="3" placeholder="Deine Erfahrung, Preis, Korrektur …" maxlength="1200" required></textarea>
 <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 <button class="btn btn-line btn-sm" type="submit">Kommentar senden</button><span class="fmsg small" role="status"></span></form></div></details></article><article class="entry rv" id="e-whatsapp-fumba" data-cat="community" data-status="geprueft" data-search="whatsapp-community fumba town online austausch der bewohner und freunde von fumba town: fragen, empfehlungen, bestellgemeinschaften. es gibt weitere gruppen, etwa zum bestellen und liefern lassen von milch- und fleischprodukten. frag dort oder bei uns nach dem einstieg.">
@@ -231,7 +240,7 @@
 <ul class="ticks"><li>Besonders gesucht: Supermärkte mit realistischen Preisen, italienischer Espresso, Ärzte, Handwerker, Autovermieter, Taxis mit Nummer.</li>
 <li>Du bist selbst Anbieter? Gib an, dass du Inhaber bist, damit wir es transparent kennzeichnen.</li></ul></div>
 <div class="rv"><form class="tform card" id="tippform">
-<div class="grid g2"><label>Kategorie<select name="cat"><option value="auto">🚗 Auto & Transport</option><option value="gesundheit">🏥 Gesundheit & Notfall</option><option value="recht">⚖️ Recht & Behörden</option><option value="einkaufen">🛒 Einkaufen & Liefern</option><option value="essen">☕ Essen & Café</option><option value="community">💬 Community & Medien</option><option value="wellness">🧘 Wellness & Freizeit</option></select></label>
+<div class="grid g2"><label>Kategorie<select name="cat"><option value="unterkunft">🏨 Unterkunft & Auszeit</option><option value="auto">🚗 Auto & Transport</option><option value="gesundheit">🏥 Gesundheit & Notfall</option><option value="recht">⚖️ Recht & Behörden</option><option value="einkaufen">🛒 Einkaufen & Liefern</option><option value="essen">☕ Essen & Café</option><option value="community">💬 Community & Medien</option><option value="wellness">🧘 Wellness & Freizeit</option></select></label>
 <label>Name des Ortes oder der Person<input name="name" maxlength="120" required></label></div>
 <label>Was sollen andere wissen? (Ort, Preis, Erfahrung)<textarea name="text" rows="4" maxlength="2000" required></textarea></label>
 <div class="grid g2"><label>Telefon, Link oder Adresse (optional)<input name="contact" maxlength="200"></label>
