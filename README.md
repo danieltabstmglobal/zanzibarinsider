@@ -18,3 +18,6 @@ Texte stehen in den Seitenfunktionen als `tx("Deutsch", "English", ru="...", it=
 Das Formular sendet an `api/submit.js`, das ein GitHub-Issue (Label `tipp` oder `kommentar`, `ungeprueft`) anlegt. Prüfen, dann Eintrag in `data/directory.json` bzw. Kommentar in `data/comments.json` übernehmen, bauen, pushen, Issue schließen.
 
 Vercel-Umgebungsvariable: `GITHUB_TOKEN` (Fine-grained Token nur für dieses Repo, Berechtigung Issues: Read and write). Optional `GITHUB_REPO`.
+
+## Formular per E-Mail
+`api/submit.js` verschickt Tipps und Kommentare per SMTP an `FORM_RECIPIENTS` (Standard: office@fumbatown.agency, daniel.taborek@me.com). Vercel-Variablen: `SMTP_USER`, `SMTP_PASS` (Hostinger-Postfach, z. B. redaktion@zanzibarinsider.com). `GITHUB_TOKEN` ist optional und legt zusätzlich ein Issue an.
