@@ -273,3 +273,9 @@ details.cm summary{padding:10px 14px;font-size:.9rem}
 .about h3{font-size:1.1rem;margin-bottom:.4rem}
 .about p{font-size:.93rem;color:var(--muted);margin:0}
 .about a{color:var(--ink-soft)}
+
+.badge.pa{background:transparent;border:1px solid #8b93a1;color:#4a5568}
+details.cm-empty{background:none;border:0}
+details.cm-empty summary{padding:4px 0;font-size:.85rem;font-weight:600;color:var(--sea);text-decoration:underline;text-underline-offset:3px}
+details.cm-empty summary::after{content:""}
+details.cm-empty[open]{box-shadow:none}

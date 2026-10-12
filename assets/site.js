@@ -30,7 +30,7 @@
     function apply(){
       var n=0;
       items.forEach(function(e){
-        var ok=(!cat||e.dataset.cat===cat)&&(!only||e.dataset.status==='geprueft')&&(!q||e.dataset.search.indexOf(q)>-1);
+        var ok=(!cat||e.dataset.cat===cat)&&(!only||e.dataset.status==='verified')&&(!q||e.dataset.search.indexOf(q)>-1);
         e.classList.toggle('hide',!ok);if(ok)n++;
       });
       if(none)none.hidden=n>0;

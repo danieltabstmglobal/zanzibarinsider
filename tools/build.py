@@ -33,6 +33,7 @@ SLUGS = {
     "leben":      {"de": "leben", "en": "living"},
     "verzeichnis": {"de": "verzeichnis", "en": "directory"},
     "kunden":     {"de": "kunden", "en": "clients"},
+    "sowirarbeiten": {"de": "so-arbeiten-wir", "en": "how-we-work"},
 }
 L = "de"  # aktive Sprache, wird in build_lang gesetzt
 
@@ -105,7 +106,7 @@ def footer():
 <div class="foot">
 <div><a class="logo" href="{page_path('index', L)}" style="display:inline-block;margin-bottom:.8rem">Zanzibar<span>Insider</span></a>
 <p>{tx("Der Wegweiser für Sansibar: zum Reisen, zum Leben und für alle, die mit uns ankommen.", "Your guide to Zanzibar: for travelling, for living here and for everyone arriving with us.")}</p></div>
-<div><h4>{tx("Entdecken", "Explore")}</h4><a href="{url('reisen')}">{tx("Reisen", "Travel")}</a><a href="{url('leben')}">{tx("Leben auf Sansibar", "Living here")}</a><a href="{url('verzeichnis')}">{tx("Verzeichnis", "Directory")}</a></div>
+<div><h4>{tx("Entdecken", "Explore")}</h4><a href="{url('reisen')}">{tx("Reisen", "Travel")}</a><a href="{url('leben')}">{tx("Leben auf Sansibar", "Living here")}</a><a href="{url('verzeichnis')}">{tx("Verzeichnis", "Directory")}</a><a href="{url('sowirarbeiten')}">{tx("So arbeiten wir", "How we work")}</a></div>
 <div><h4>{tx("Initiiert von", "Initiated by")}</h4><a href="{FT}">FumbaTown Agency</a><a href="{PA}">Perspektive Ausland</a></div>
 <div><h4>{tx("Weiterlesen", "Further reading")}</h4><a href="{WA_SZ}">Wohnsitz Ausland</a><a href="{FUMBA_TIMES}">The Fumba Times</a></div>
 <div><h4>{tx("Kontakt", "Contact")}</h4><a href="{url('verzeichnis', 'tipp')}">{tx("Tipp einsenden", "Submit a tip")}</a><a href="mailto:{EDITORIAL_MAIL}">{EDITORIAL_MAIL}</a><a href="{url('verzeichnis')}?c=gruppen">{tx("WhatsApp-Gruppen", "WhatsApp groups")}</a></div>
@@ -182,13 +183,31 @@ def contribute_band():
 <p class="lead">{tx("Das beste Wissen steckt in den Menschen vor Ort. Empfiehl uns den guten Anwalt, den fairen Fahrer, das Café mit dem echten Espresso. Wir prüfen Tipps redaktionell und kennzeichnen, was geprüft ist.", "The best knowledge sits with the people on the island. Recommend the good lawyer, the fair driver, the café with real espresso. We review tips editorially and mark what has been checked.")}</p>
 <div class="btn-row"><a class="btn btn-primary" href="{url('verzeichnis', 'tipp')}">{tx("Tipp einsenden", "Submit a tip")}</a><a class="btn btn-line" href="{url('verzeichnis')}?c=gruppen">{tx("WhatsApp-Gruppen", "WhatsApp groups")}</a></div></div>
 <div class="rv"><div class="card"><h3>{tx("So funktioniert es", "How it works")}</h3>
-<ul class="ticks"><li>{tx("Du schickst einen Tipp oder eine Korrektur.", "You send a tip or a correction.")}</li><li>{tx("Wir prüfen Angaben und Kontakt.", "We check details and contact.")}</li><li>{tx("Der Eintrag erscheint als <b>geprüft</b> oder als <b>ungeprüft</b> mit Quelle und Datum.", "The entry appears as <b>checked</b> or <b>unchecked</b> with source and date.")}</li><li>{tx("Alle können kommentieren. Kommentare erscheinen nach Freigabe.", "Everyone can comment. Comments appear after approval.")}</li></ul></div></div>
+<ul class="ticks"><li>{tx("Du schickst einen Tipp oder eine Korrektur.", "You send a tip or a correction.")}</li><li>{tx("Wir prüfen Angaben und Kontakt.", "We check details and contact.")}</li><li>{tx("Der Eintrag erscheint als <b>geprüft</b> oder als <b>ungeprüft</b> mit Quelle und Datum.", "The entry appears as <b>checked</b> or <b>unchecked</b> with source and date.")}</li><li>{tx("Alle können kommentieren. Kommentare erscheinen nach Freigabe.", "Everyone can comment. Comments appear after approval.")}</li></ul>
+<p class="small" style="margin-top:.8rem"><a href="{url('sowirarbeiten')}">{tx("So arbeiten wir", "How we work")} →</a></p></div></div>
 </div></div></section>'''
 
 
+MONTHS = {
+    "de": ["Jan.", "Feb.", "März", "Apr.", "Mai", "Juni", "Juli", "Aug.", "Sept.", "Okt.", "Nov.", "Dez."],
+    "en": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+}
+
+
+def fmt_month(ym):
+    try:
+        y, m = ym.split("-")[:2]
+        names = MONTHS.get(L, MONTHS["en"])
+        return f"{names[int(m) - 1]} {y}"
+    except Exception:
+        return ym or ""
+
+
 def badge(status):
-    if status == "geprueft":
+    if status == "verified":
         return f'<span class="badge ok">✓ {tx("Geprüft", "Checked")}</span>'
+    if status == "partner":
+        return '<span class="badge pa">Partner</span>'
     return f'<span class="badge un">{tx("Ungeprüft", "Unchecked")}</span>'
 
 
@@ -209,18 +228,32 @@ def entry_html(e, comments, compact=False):
     tip = f'<p class="tipline"><b>{tx("Richtwert", "Rule of thumb")}:</b> {esc(loc(e["tip"]))}</p>' if e.get("tip") else ""
     cl = comments.get(e["id"], [])
     cm = "".join(f'<div class="cmt"><b>{esc(c["name"])}</b> <span class="muted small">{esc(c["date"])}</span><p>{esc(c["text"])}</p></div>' for c in cl)
-    status_txt = tx("Redaktionell geprüft", "Editorially checked") if e["status"] == "geprueft" else tx("Noch nicht von uns geprüft", "Not yet checked by us")
+    if e["status"] == "verified":
+        status_txt = tx("Redaktionell geprüft", "Editorially checked")
+        if e.get("verifiedBy"):
+            status_txt += " " + tx("von", "by") + " " + esc(e["verifiedBy"])
+    elif e["status"] == "partner":
+        status_txt = tx("Geschäftliche Verbindung zu den Initiatoren", "Business relationship with the initiators")
+    else:
+        status_txt = tx("Noch nicht von uns geprüft", "Not yet checked by us")
+    src = e.get("source", "")
+    if src == "public":
+        src = tx("Öffentliche Quelle", "Public source")
+    cta = ""
+    if e.get("cta"):
+        cta = f'<p><a href="{url("verzeichnis", "tipp")}">{esc(loc(e["cta"]))}</a></p>'
     search = esc((name + " " + loc(e.get("loc")) + " " + loc(e["text"])).lower())
-    form = "" if compact else f'''<details class="cm"><summary>{tx("Kommentare", "Comments")} ({len(cl)})</summary><div class="in">{cm or '<p class="muted small">' + tx("Noch keine Kommentare.", "No comments yet.") + '</p>'}
+    summ = f'{tx("Kommentare", "Comments")} ({len(cl)})' if cl else tx("Erfahrung teilen oder Fehler melden", "Share experience or report an error")
+    form = "" if compact else f'''<details class="cm{'' if cl else ' cm-empty'}"><summary>{summ}</summary><div class="in">{cm}
 <form class="cform" data-entry="{esc(e['id'])}"><input name="name" placeholder="{tx('Dein Name', 'Your name')}" maxlength="60" required>
 <textarea name="text" rows="3" placeholder="{tx('Deine Erfahrung, Preis, Korrektur …', 'Your experience, price, correction …')}" maxlength="1200" required></textarea>
 <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 <button class="btn btn-line btn-sm" type="submit">{tx("Kommentar senden", "Send comment")}</button><span class="fmsg small" role="status"></span></form></div></details>'''
     return f'''<article class="entry rv" id="e-{esc(e['id'])}" data-cat="{cat}" data-status="{e['status']}" data-search="{search}">
 <div class="ehead">{badge(e['status'])}<h3>{esc(name)}</h3></div>
-<p>{esc(loc(e['text']))}</p>{tip}
+<p>{esc(loc(e['text']))}</p>{cta}{tip}
 <ul class="meta">{''.join(meta)}</ul>
-<p class="src small muted">{status_txt} · {tx('Quelle', 'Source')}: {esc(e.get('source', ''))} · {tx('Stand', 'As of')} {e.get('checked', '')}</p>
+<p class="src small muted">{status_txt} · {tx('Quelle', 'Source')}: {esc(src)} · {tx('Stand', 'Updated')}: {fmt_month(e.get('updated', ''))}</p>
 {form}</article>'''
 
 
@@ -302,7 +335,7 @@ def magazine_band():
 def p_reisen(d, c):
     months = [("Jan", 28, "dry"), ("Feb", 29, "dry"), ("Mär" if L == "de" else "Mar", 30, "wet"), ("Apr", 28, "wet"),
               (tx("Mai", "May"), 26, "wet"), ("Jun", 25, "dry"), ("Jul", 25, "dry"), ("Aug", 26, "dry"), ("Sep", 27, "dry"),
-              ("Okt" if L == "de" else "Oct", 28, "mix"), ("Nov", 28, "wet"), ("Dez" if L == "de" else "Dec", 28, "dry")]
+              ("Okt" if L == "de" else "Oct", 28, "mix"), ("Nov", 28, "mix"), ("Dez" if L == "de" else "Dec", 28, "dry")]
     mh = "".join(f'<div class="m {k}">{m}<i>{t}°</i></div>' for m, t, k in months)
 
     def beach(n, t, dsc):
@@ -330,9 +363,10 @@ def p_reisen(d, c):
 <p class="lead">{tx('Rund 27 °C im Jahresmittel. Zwei Regenzeiten bestimmen, wann du am meisten Sonne hast.', 'Around 27 °C on average. Two rainy seasons decide when you get the most sun.')}</p></div>
 <div class="months rv">{mh}</div>
 <div class="legend"><span><i style="background:#f6d9a8"></i>{tx('Trockenzeit', 'Dry season')}</span><span><i style="background:#bfdde2"></i>{tx('Regenzeit', 'Rainy season')}</span><span><i style="background:#e8e2cf"></i>{tx('Übergang', 'Transition')}</span><span>{tx('Typische Tageshöchsttemperatur in °C', 'Typical daily high in °C')}</span></div>
-<div class="grid g3" style="margin-top:2rem">
+<div class="grid g2" style="margin-top:2rem">
 <div class="card rv"><h3>{tx('Juni – September', 'June – September')}</h3><p><strong>{tx('Beste Reisezeit.', 'Best time to go.')}</strong> {tx('Große Trockenzeit mit 25 bis 27 °C, ideal für Strand und Ausflüge. Hochsaison, früh buchen.', 'Long dry season at 25 to 27 °C, ideal for beach and excursions. High season, book early.')}</p></div>
 <div class="card rv"><h3>{tx('Dezember – Februar', 'December – February')}</h3><p><strong>{tx('Sehr gut.', 'Very good.')}</strong> {tx('Kurze Trockenzeit mit 28 bis 29 °C. Weihnachten und Silvester sind schnell ausgebucht.', 'Short dry season at 28 to 29 °C. Christmas and New Year book out fast.')}</p></div>
+<div class="card rv"><h3>{tx('Oktober – November', 'October – November')}</h3><p><strong>{tx('Kleine Regenzeit (Vuli).', 'Short rains (Vuli).')}</strong> {tx('Meist kurze Schauer am Nachmittag, dazwischen viel Sonne. Gute Zeit für Reisende, die Ruhe und günstigere Preise suchen.', 'Mostly brief afternoon showers with plenty of sun in between. A good time for travellers looking for quiet and lower prices.')}</p></div>
 <div class="card rv"><h3>{tx('März – Mai', 'March – May')}</h3><p><strong>{tx('Große Regenzeit (Masika).', 'Long rains (Masika).')}</strong> {tx('Intensive Regenfälle, dafür die niedrigsten Preise und wenige Gäste.', 'Heavy rain, but the lowest prices and few visitors.')}</p></div>
 </div></div></section>
 
@@ -411,13 +445,14 @@ def p_reisen(d, c):
 
 <section id="anreise" class="band"><div class="wrap">
 <div class="head"><span class="eyebrow">{tx('Anreise', 'Getting here')}</span><h2>{tx('So kommst du <em>auf die Insel</em>', 'How to get <em>to the island</em>')}</h2>
-<p class="lead">{tx('Es gibt keinen Direktflug aus dem deutschsprachigen Raum. Die besten Verbindungen laufen über Dubai, Istanbul, Doha oder Nairobi.', 'There is no direct flight from German-speaking countries. The best connections run via Dubai, Istanbul, Doha or Nairobi.')}</p></div>
+<p class="lead">{tx('Condor fliegt ab Frankfurt nonstop nach Sansibar, drei- bis viermal pro Woche, in rund 10,5 Stunden. Ab München, Wien oder Zürich geht es mit einem Umstieg, etwa über Dubai, Istanbul, Doha, Addis Abeba oder Nairobi.', 'Condor flies nonstop from Frankfurt to Zanzibar, three to four times a week, in about 10.5 hours. From Munich, Vienna or Zurich it is one change, for example via Dubai, Istanbul, Doha, Addis Ababa or Nairobi.')}</p></div>
 <div class="grid g4">
-<div class="card rv"><h3>Frankfurt</h3><p>{tx('über Dubai, ca. 14 Std.', 'via Dubai, approx. 14 h')}</p></div>
+<div class="card rv"><h3>Frankfurt</h3><p>{tx('Direkt mit Condor, ca. 10,5 Std.', 'Nonstop with Condor, approx. 10.5 h')}</p></div>
 <div class="card rv"><h3>{tx('München', 'Munich')}</h3><p>{tx('über Istanbul, ca. 11 Std.', 'via Istanbul, approx. 11 h')}</p></div>
 <div class="card rv"><h3>{tx('Wien', 'Vienna')}</h3><p>{tx('über Doha, ca. 12 Std.', 'via Doha, approx. 12 h')}</p></div>
-<div class="card rv"><h3>{tx('Zürich', 'Zurich')}</h3><p>{tx('über Nairobi, ca. 10 Std.', 'via Nairobi, approx. 10 h')}</p></div>
+<div class="card rv"><h3>{tx('Zürich', 'Zurich')}</h3><p>{tx('mit Umstieg, ca. 10 bis 13 Std.', 'with a change, approx. 10 to 13 h')}</p></div>
 </div>
+<p class="small muted" style="margin-top:12px">{tx('Flugpläne ändern sich je nach Saison. Stand: Okt. 2026.', 'Flight schedules change with the season. Updated: Oct 2026.')}</p>
 <div class="grid g3" style="margin-top:22px">
 <div class="card rv"><h3>{tx('Nach Fumba Town', 'To Fumba Town')}</h3><p>{tx('15 bis 25 Min., Taxi ca. 15 bis 25 USD.', '15 to 25 min, taxi approx. 15 to 25 USD.')}</p></div>
 <div class="card rv"><h3>{tx('Nach Stone Town', 'To Stone Town')}</h3><p>{tx('10 bis 15 Min., Taxi ca. 10 bis 15 USD.', '10 to 15 min, taxi approx. 10 to 15 USD.')}</p></div>
@@ -471,7 +506,7 @@ def p_leben(d, c):
 <div class="card rv"><span class="icon">☀️</span><h3>{tx('Klima', 'Climate')}</h3><p>{tx('Rund 27 °C im Jahresmittel, Meeresluft und kein langer dunkler Winter.', 'Around 27 °C on average, sea air and no long dark winter.')}</p></div>
 <div class="card rv"><span class="icon">💶</span><h3>{tx('Lebenshaltung', 'Cost of living')}</h3><p>{tx('Lokal lebt es sich deutlich günstiger als in Deutschland, Österreich oder der Schweiz. Für ein Expat-Paar sind 2.000 bis 3.500 USD im Monat ein sinnvoller Planungswert.', 'Living locally is much cheaper than in Germany, Austria or Switzerland. For an expat couple 2,000 to 3,500 USD a month is a sensible planning figure.')}</p></div>
 <div class="card rv"><span class="icon">🤝</span><h3>Community</h3><p>{tx('Eine wachsende internationale Gemeinschaft in Fumba Town mit Nachbarn aus über 60 Nationen.', 'A growing international community in Fumba Town with neighbours from over 60 nations.')}</p></div>
-<div class="card rv"><span class="icon">✈️</span><h3>{tx('Anbindung', 'Connections')}</h3><p>{tx('Flughafen in 15 bis 25 Minuten, Europa über Dubai, Istanbul, Doha oder Nairobi in 10 bis 14 Stunden.', 'Airport in 15 to 25 minutes, Europe via Dubai, Istanbul, Doha or Nairobi in 10 to 14 hours.')}</p></div>
+<div class="card rv"><span class="icon">✈️</span><h3>{tx('Anbindung', 'Connections')}</h3><p>{tx('Flughafen in 15 bis 25 Minuten. Ab Frankfurt nonstop in rund 10,5 Stunden, sonst mit einem Umstieg.', 'Airport in 15 to 25 minutes. Nonstop from Frankfurt in about 10.5 hours, otherwise with one change.')}</p></div>
 <div class="card rv"><span class="icon">🏥</span><h3>{tx('Medizin', 'Healthcare')}</h3><p>{tx('Klinik und Apotheken vor Ort, Krankenhaus in Stone Town. Für ernste Fälle sind Daressalam oder Nairobi die Anlaufstellen.', 'Clinic and pharmacies nearby, hospital in Stone Town. For serious cases Dar es Salaam or Nairobi are the options.')}</p></div>
 <div class="card rv"><span class="icon">🏡</span><h3>{tx('Wohnen', 'Housing')}</h3><p>{tx('Moderne Projekte wie Fumba Town mit Strand, Pool und Restaurants zu Fuß erreichbar.', 'Modern projects like Fumba Town with beach, pool and restaurants within walking distance.')}</p></div>
 </div></div></section>
@@ -489,17 +524,17 @@ def p_leben(d, c):
 <h4 style="margin:.8rem 0 .3rem">{tx('Voraussetzungen', 'Requirements')}</h4><ul>
 <li>{tx('Renteneinkünfte oder andere passive Einkünfte von mindestens 1.500 USD im Monat (gesetzliche oder private Rente, Mieteinnahmen, Zinsen)', 'Pension or other passive income of at least 1,500 USD a month (state or private pension, rental income, interest)')}</li>
 <li>{tx('Nachweis, dass du dich und gegebenenfalls Angehörige selbst finanzieren kannst', 'Proof that you can support yourself and any dependants')}</li>
-<li>{tx('Fester Wohnsitz per Mietvertrag oder Immobilienkauf. Die Immobilie darf unter 100.000 USD liegen und muss nicht vollständig bezahlt sein. In Fumba Town sind Wohnungen ab 35.000 € zu kaufen oder ab 350 € im Monat zu mieten.', 'Fixed residence via rental contract or property purchase. The property may be below 100,000 USD and need not be fully paid. In Fumba Town flats start from €35,000 to buy or from €350 a month to rent.')}</li></ul>
+<li>{tx('Fester Wohnsitz per Mietvertrag oder Immobilienkauf. Die Immobilie darf unter 100.000 USD liegen und muss nicht vollständig bezahlt sein. In Fumba Town gibt es Wohnungen zum Kauf ab rund 40.000 USD oder zur Miete ab etwa 350 € im Monat.', 'Fixed residence via rental contract or property purchase. The property may be below 100,000 USD and need not be fully paid. In Fumba Town there are flats to buy from around 40,000 USD or to rent from about €350 a month.')}</li></ul>
 <h4 style="margin:.8rem 0 .3rem">{tx('Unterlagen', 'Documents')}</h4><ul>{dl}</ul>
 <h4 style="margin:.8rem 0 .3rem">{tx('Ablauf', 'Process')}</h4><ol style="margin-left:1.2rem">{sl}</ol>
-<p style="margin-top:.8rem"><strong>{tx('Kosten:', 'Costs:')}</strong> {tx('Die staatliche Antragsgebühr liegt bei etwa 500 USD. Die FumbaTown Agency und ihre Anwältin übernehmen Anträge, Nachweise und Behördengänge für eine einmalige Pauschale von 1.400 USD, die staatliche Gebühr kommt hinzu.', 'The government application fee is about 500 USD. FumbaTown Agency and its lawyer handle applications, evidence and authority visits for a one-off flat fee of 1,400 USD, the government fee comes on top.')}</p>
-<p><a class="btn btn-line btn-sm" href="{FT}/ruhestandsvisum">{tx('Mehr zum Ruhestandsvisum', 'More on the retirement visa')}</a></p></div></details>
+<p style="margin-top:.8rem"><strong>{tx('Kosten:', 'Costs:')}</strong> {tx('Die staatliche Antragsgebühr liegt bei etwa 500 USD. Den Antrag kannst du selbst stellen oder über eine Anwältin bzw. Agentur, die Unterlagen und Behördengänge übernimmt. Dafür kommen je nach Umfang Honorarkosten hinzu.', 'The government application fee is about 500 USD. You can apply yourself or through a lawyer or agency that handles documents and authority visits. Depending on scope, fees come on top.')}</p>
+<p><a class="btn btn-line btn-sm" href="{FT}/ruhestandsvisum">{tx('Begleitung beim Antrag (FumbaTown Agency)', 'Support with the application (FumbaTown Agency)')}</a></p></div></details>
 <details><summary>{tx('Golden Visa (Class C über Immobilienkauf)', 'Golden visa (Class C via property purchase)')}</summary><div class="in">
 <ul><li>{tx('Voraussetzung: Immobilienkauf ab 100.000 USD in einem ZIPA-Projekt wie Fumba Town. Der Anspruch besteht, solange du Eigentümer bist.', 'Requirement: property purchase from 100,000 USD in a ZIPA project such as Fumba Town. The entitlement lasts as long as you own the property.')}</li>
 <li>{tx('Gilt für bis zu 6 Personen: die Eltern und bis zu 4 finanziell abhängige Kinder. Die Altersgrenze für Kinder liegt bei 21 Jahren, der Antrag kann zuletzt mit 18 gestellt werden.', 'Covers up to 6 people: the parents and up to 4 financially dependent children. The age limit for children is 21, the application can be made at 18 at the latest.')}</li>
 <li>{tx('Das Visum steht im Reisepass und wird alle 2 Jahre verlängert: etwa 500 USD für die Hauptperson und etwa 50 USD je weitere Person.', 'The visa is in the passport and renewed every 2 years: about 500 USD for the main applicant and about 50 USD per additional person.')}</li>
 <li>{tx('Ältere Kinder brauchen eine eigene Lösung, etwa Studenten- oder Arbeitsvisum oder eine eigene Investition.', 'Older children need their own solution, such as a student or work visa or their own investment.')}</li></ul>
-<p><a class="btn btn-line btn-sm" href="{FT}/golden-visa">{tx('Mehr zum Golden Visa', 'More on the golden visa')}</a></p></div></details>
+<p><a class="btn btn-line btn-sm" href="{FT}/golden-visa">{tx('Begleitung beim Golden Visa (FumbaTown Agency)', 'Support with the golden visa (FumbaTown Agency)')}</a></p></div></details>
 </div>
 <div class="note"><strong>{tx('Wichtig:', 'Important:')}</strong> {tx('Eine Staatsbürgerschaft ist praktisch nicht erreichbar, doppelte Staatsbürgerschaft gibt es nicht. Die Residence Permit allein löst noch keine Steueransässigkeit aus. Bearbeitungszeiten und Gebühren können sich ändern.', 'Citizenship is practically unattainable, dual citizenship does not exist. The residence permit alone does not trigger tax residency. Processing times and fees may change.')}</div>
 <p class="small muted" style="margin-top:1rem">{tx('Persönliche Begleitung bei Aufenthaltstiteln und Immobilienkauf bietet unter anderem die', 'Personal support with residence permits and property purchases is offered by, among others,')} <a href="{FT}/beratung">FumbaTown Agency</a>.</p>
@@ -547,24 +582,16 @@ def p_leben(d, c):
 <section id="alltag"><div class="wrap">
 <div class="head"><span class="eyebrow">{tx('Alltag', 'Daily life')}</span><h2>{tx('Einkaufen, essen, <em>ankommen</em>', 'Shopping, eating, <em>settling in</em>')}</h2>
 <p class="lead">{tx('Wo bekomme ich was? Eine Auswahl aus dem Verzeichnis, die wir laufend erweitern. Kommentare und Korrekturen sind willkommen.', 'Where do I get what? A selection from the directory, which we keep expanding. Comments and corrections are welcome.')}</p></div>
-<div class="grid g3 entries">{ve('soul-beach-hotel')}{ve('darajani')}{ve('kwetu-kwetu')}{ve('lieferdienste')}{ve('zanzibar-coffee-house')}{ve('amore-mio')}{ve('whatsapp-supermarkt-fumba')}</div>
+<div class="grid g3 entries">{ve('darajani')}{ve('kwetu-kwetu')}{ve('lieferdienste')}{ve('zanzibar-coffee-house')}{ve('amore-mio')}{ve('whatsapp-supermarkt-fumba')}</div>
 <div class="btn-row"><a class="btn btn-primary" href="{url('verzeichnis')}">{tx('Ganzes Verzeichnis', 'Whole directory')}</a><a class="btn btn-line" href="{url('verzeichnis', 'tipp')}">{tx('Tipp einsenden', 'Submit a tip')}</a></div>
 </div></section>
 
-<section id="recht" class="band"><div class="wrap"><div class="split">
-<div class="rv"><span class="eyebrow">{tx('Recht & Behörden', 'Legal & authorities')}</span><h2>{tx('Unsere <em>Anwältin</em> vor Ort', 'Our <em>lawyer</em> on the ground')}</h2>
-<p class="lead">{tx('Clara Wella ist in Tansania (Festland) und auf Sansibar als Anwältin zugelassen, mit über 9 Jahren Erfahrung in Immobilien- und Einwanderungsrecht. Wir arbeiten mit ihr zusammen und empfehlen sie.', 'Clara Wella is a registered lawyer in Tanzania Mainland and Zanzibar with over 9 years of experience in real estate and immigration law. We work with her and recommend her.')}</p>
-<p><strong>{tx('Sie unterstützt bei:', 'She helps with:')}</strong></p>
-<ul class="ticks">
-<li>{tx('Beantragung des Dauervisums', 'Applying for the long-term visa')}</li>
-<li>{tx('Beantragung des Rentnervisums', 'Applying for the retirement visa')}</li>
-<li>{tx('Beantragung des lokalen Führerscheins', 'Applying for the local driving licence')}</li>
-<li>{tx('Verkauf einer Immobilie', 'Selling a property')}</li>
-<li>{tx('Kauf einer Immobilie von einem privaten Besitzer', 'Buying a property from a private owner')}</li></ul>
-<div class="btn-row"><a class="btn btn-primary" href="tel:+255776162033">+255 776 162 033</a><a class="btn btn-line" href="https://wa.me/255776162033">WhatsApp</a><a class="btn btn-line" href="mailto:wakilii@aol.com">E-Mail</a></div></div>
-<div class="rv"><div class="media" style="margin-bottom:18px"><img src="/img/clara-wella.webp" alt="Clara Wella" loading="lazy" style="aspect-ratio:4/5;object-position:center 20%;max-width:380px"></div>
-<div class="entries">{ve('clara-wella')}</div></div>
-</div></div></section>
+<section id="recht" class="band"><div class="wrap">
+<div class="head"><span class="eyebrow">{tx('Recht & Behörden', 'Legal & authorities')}</span><h2>{tx('Recht & <em>Behörden</em>', 'Legal & <em>authorities</em>')}</h2>
+<p class="lead">{tx('Für Aufenthaltstitel, Immobilienkauf und Verträge empfiehlt sich eine Anwältin oder ein Anwalt vor Ort, der mit ZIPA und Immigration vertraut ist. Kontakte findest du im Verzeichnis unter Recht & Behörden.', 'For residence permits, property purchases and contracts we recommend a lawyer on the ground who is familiar with ZIPA and immigration. You find contacts in the directory under Legal & authorities.')}</p></div>
+<div class="grid g2 entries">{ve('clara-wella')}</div>
+<div class="btn-row"><a class="btn btn-line" href="{url('verzeichnis')}?c=recht">{tx('Mehr im Verzeichnis', 'More in the directory')}</a></div>
+</div></section>
 ''' + magazine_band() + contribute_band()
     return (tx("Leben auf Sansibar: Aufenthalt, Steuern, Kosten | Zanzibar Insider", "Living on Zanzibar: residency, taxes, costs | Zanzibar Insider"),
             tx("Auswandern nach Sansibar: Ruhestandsvisum, Golden Visa, Steuern in den ZIPA-Freezones, Kosten, Wohnen, Einkaufen und Alltag für Expats.",
@@ -576,7 +603,7 @@ def p_verzeichnis(d, c):
     cats = d["categories"]
     chips = f'<button class="chip on" data-cat="">{tx("Alle", "All")}</button>' + "".join(
         f'<button class="chip" data-cat="{x["id"]}">{x["icon"]} {loc(x)}</button>' for x in cats)
-    ents = sorted(d["entries"], key=lambda e: (e["status"] != "geprueft", loc(e["name"]).lower()))
+    ents = sorted(d["entries"], key=lambda e: ({"verified": 0, "partner": 1}.get(e["status"], 2), loc(e["name"]).lower()))
     items = "".join(entry_html(e, c) for e in ents)
     body = hero("strand_restaurant.webp", tx("Insider-Verzeichnis", "Insider directory"),
                 tx("Das Sansibar-<em>Verzeichnis</em>", "The Zanzibar <em>directory</em>"),
@@ -586,10 +613,12 @@ def p_verzeichnis(d, c):
     body += f'''
 <section id="liste"><div class="wrap">
 <div class="legendbox rv">
-<div>{badge('geprueft')} <span>{tx('Von uns persönlich geprüft oder empfohlen, mit Quelle und Datum.', 'Checked or recommended by us in person, with source and date.')}</span></div>
-<div>{badge('ungeprueft')} <span>{tx('Hinweis aus Community oder öffentlicher Quelle, noch nicht von uns bestätigt. Bitte vor Ort prüfen.', 'Tip from the community or a public source, not yet confirmed by us. Please verify on site.')}</span></div>
+<div>{badge('verified')} <span>{tx('Von uns persönlich geprüft oder empfohlen, mit Quelle und Datum.', 'Checked or recommended by us in person, with source and date.')}</span></div>
+<div>{badge('partner')} <span>{tx('Wir arbeiten mit diesem Anbieter zusammen oder das Projekt gehört zum Umfeld der Initiatoren. Wir kennzeichnen das offen.', "We work with this provider or the project belongs to the initiators' network. We say so openly.")}</span></div>
+<div>{badge('unverified')} <span>{tx('Hinweis aus Community oder öffentlicher Quelle, noch nicht von uns bestätigt. Bitte vor Ort prüfen.', 'Tip from the community or a public source, not yet confirmed by us. Please verify on site.')}</span></div>
 </div>
 <div class="note rv" style="margin:0 0 18px">{tx("<strong>WhatsApp-Gruppen:</strong> Auf Sansibar läuft vieles über Gruppen: Supermärkte, Bestellgemeinschaften, Nachbarschaft, Handwerker. Wir sammeln sie unter „WhatsApp-Gruppen“. Kennst du eine? Schick uns Name und Einladungslink über „Tipp einsenden“.", "<strong>WhatsApp groups:</strong> A lot on Zanzibar runs through groups: supermarkets, ordering circles, neighbourhoods, tradespeople. We collect them under WhatsApp groups. Know one? Send us the name and invite link via Submit a tip.")}</div>
+<p class="small muted" style="margin:-8px 0 18px"><a href="{url('sowirarbeiten')}">{tx('Mehr dazu, wie wir prüfen', 'More on how we check')}</a></p>
 <div class="filters"><input id="q" type="search" placeholder="{tx('Suchen: Auto, Arzt, Pizza …', 'Search: car, doctor, pizza …')}" aria-label="{tx('Suchen', 'Search')}">
 <div class="chips">{chips}</div>
 <label class="chk"><input type="checkbox" id="onlyok"> {tx('Nur geprüfte Einträge', 'Checked entries only')}</label></div>
@@ -714,7 +743,37 @@ def p_kunden(d, c):
             body, "fumbatown_projekt_luftaufnahme_stadtansicht.webp")
 
 
-PAGES = {"index": p_index, "reisen": p_reisen, "leben": p_leben, "verzeichnis": p_verzeichnis, "kunden": p_kunden}
+def p_sowir(d, c):
+    body = f'''<section style="padding-top:150px"><div class="wrap narrow">
+<h1 style="font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:1.6rem">{tx("So arbeiten wir", "How we work")}</h1>
+<h2>{tx("Wer steckt dahinter", "Who is behind this")}</h2>
+<p>{tx("Zanzibar Insider wurde von Menschen gestartet, die auf Sansibar leben und arbeiten, unter anderem vom Team der FumbaTown Agency und von Perspektive Ausland. Wir verdienen unser Geld mit Beratung und Immobilienvermittlung, nicht mit dieser Seite. Genau deshalb kennzeichnen wir offen, wo es Verbindungen gibt.",
+"Zanzibar Insider was started by people who live and work on Zanzibar, among others the team of FumbaTown Agency and Perspektive Ausland. We earn our money from consulting and property brokerage, not from this site. That is exactly why we state openly where there are connections.")}</p>
+<h2 style="margin-top:2rem">{tx("Die drei Labels", "The three labels")}</h2>
+<p>{badge('verified')} {tx("Wir haben den Anbieter selbst genutzt oder persönlich geprüft.", "We have used the provider ourselves or checked it in person.")}</p>
+<p>{badge('unverified')} {tx("Ein Hinweis aus der Community oder einer öffentlichen Quelle. Klingt gut, wir konnten es aber noch nicht selbst bestätigen.", "A tip from the community or a public source. Sounds good, but we have not been able to confirm it ourselves yet.")}</p>
+<p>{badge('partner')} {tx("Wir arbeiten mit dem Anbieter zusammen oder das Projekt gehört zu unserem Umfeld. Das sagen wir dazu.", "We work with the provider or the project belongs to our network. We say so.")}</p>
+<h2 style="margin-top:2rem">{tx("Bezahlte Einträge", "Paid listings")}</h2>
+<p>{tx("Es gibt keine bezahlten Platzierungen. Niemand kann sich ein „Geprüft“ kaufen. Die Reihenfolge im Verzeichnis ist: zuerst Geprüft, dann Partner, dann Ungeprüft, jeweils alphabetisch.",
+"There are no paid placements. Nobody can buy a Checked label. The order in the directory is: Checked first, then Partner, then Unchecked, each alphabetical.")}</p>
+<h2 style="margin-top:2rem">{tx("Wie wir Tipps prüfen", "How we check tips")}</h2>
+<p>{tx("Jeder eingesandte Tipp wird gelesen. Wir prüfen, ob es den Anbieter gibt und ob Kontaktdaten stimmen. Danach erscheint er als Ungeprüft. Geprüft wird er erst, wenn jemand aus dem Team oder mehrere unabhängige Leser ihn bestätigt haben. Anbieter, die sich selbst eintragen, kennzeichnen wir als Inhaber-Eintrag.",
+"Every submitted tip is read. We check whether the provider exists and whether the contact details are right. It then appears as Unchecked. It only becomes Checked once someone from the team or several independent readers have confirmed it. Providers who list themselves are marked as owner entries.")}</p>
+<h2 style="margin-top:2rem">{tx("Fehler und Korrekturen", "Errors and corrections")}</h2>
+<p>{tx("Preise, Nummern und Öffnungszeiten ändern sich auf Sansibar schnell. Wenn dir etwas Falsches auffällt, sag es uns. Wir korrigieren so schnell wie möglich und passen das Datum an.",
+"Prices, numbers and opening hours change quickly on Zanzibar. If you notice something wrong, tell us. We correct it as soon as possible and update the date.")}</p>
+<h2 style="margin-top:2rem">{tx("Keine Beratung", "No advice")}</h2>
+<p>{tx("Alle Angaben ohne Gewähr. Zu Visa, Steuern und Recht geben wir einen Überblick, keine individuelle Rechts-, Steuer- oder Anlageberatung.",
+"All information without guarantee. On visas, taxes and legal matters we give an overview, not individual legal, tax or investment advice.")}</p>
+<div class="btn-row"><a class="btn btn-primary" href="{url('verzeichnis', 'tipp')}">{tx("Tipp einsenden", "Submit a tip")}</a></div>
+</div></section>'''
+    return (tx("So arbeiten wir | Zanzibar Insider", "How we work | Zanzibar Insider"),
+            tx("Wer hinter Zanzibar Insider steht, was Geprüft, Ungeprüft und Partner bedeuten und wie wir Tipps prüfen.",
+               "Who is behind Zanzibar Insider, what Checked, Unchecked and Partner mean and how we check tips."),
+            body, "strand_restaurant.webp")
+
+
+PAGES = {"index": p_index, "reisen": p_reisen, "leben": p_leben, "verzeichnis": p_verzeichnis, "kunden": p_kunden, "sowirarbeiten": p_sowir}
 
 
 def write(path, content):
