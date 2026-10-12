@@ -201,6 +201,8 @@ def entry_html(e, comments, compact=False):
     if e.get("phone"):
         tel = re.sub(r"[^+\d]", "", e["phone"])
         meta.append(f'<li>📞 <a href="tel:{tel}">{esc(e["phone"])}</a></li>')
+    if e.get("email"):
+        meta.append(f'<li>✉️ <a href="mailto:{esc(e["email"])}">{esc(e["email"])}</a></li>')
     if e.get("url"):
         host = re.sub(r"^https?://(www\.)?", "", e["url"]).split("/")[0]
         meta.append(f'<li>🔗 <a href="{esc(e["url"])}" rel="noopener">{esc(host)}</a></li>')
@@ -551,9 +553,17 @@ def p_leben(d, c):
 
 <section id="recht" class="band"><div class="wrap"><div class="split">
 <div class="rv"><span class="eyebrow">{tx('Recht & Behörden', 'Legal & authorities')}</span><h2>{tx('Unsere <em>Anwältin</em> vor Ort', 'Our <em>lawyer</em> on the ground')}</h2>
-<p class="lead">{tx('Clara Wella ist unsere Ansprechpartnerin für Aufenthaltstitel, Immobilienkauf und Verträge auf Sansibar. Wir arbeiten seit Langem mit ihr zusammen und empfehlen sie.', 'Clara Wella is our contact for residence permits, property purchases and contracts on Zanzibar. We have worked with her for a long time and recommend her.')}</p>
-<div class="btn-row"><a class="btn btn-primary" href="tel:+255776162033">+255 776 162 033</a><a class="btn btn-line" href="https://wa.me/255776162033">WhatsApp</a></div></div>
-<div class="entries rv">{ve('clara-wella')}</div>
+<p class="lead">{tx('Clara Wella ist in Tansania (Festland) und auf Sansibar als Anwältin zugelassen, mit über 9 Jahren Erfahrung in Immobilien- und Einwanderungsrecht. Wir arbeiten mit ihr zusammen und empfehlen sie.', 'Clara Wella is a registered lawyer in Tanzania Mainland and Zanzibar with over 9 years of experience in real estate and immigration law. We work with her and recommend her.')}</p>
+<p><strong>{tx('Sie unterstützt bei:', 'She helps with:')}</strong></p>
+<ul class="ticks">
+<li>{tx('Beantragung des Dauervisums', 'Applying for the long-term visa')}</li>
+<li>{tx('Beantragung des Rentnervisums', 'Applying for the retirement visa')}</li>
+<li>{tx('Beantragung des lokalen Führerscheins', 'Applying for the local driving licence')}</li>
+<li>{tx('Verkauf einer Immobilie', 'Selling a property')}</li>
+<li>{tx('Kauf einer Immobilie von einem privaten Besitzer', 'Buying a property from a private owner')}</li></ul>
+<div class="btn-row"><a class="btn btn-primary" href="tel:+255776162033">+255 776 162 033</a><a class="btn btn-line" href="https://wa.me/255776162033">WhatsApp</a><a class="btn btn-line" href="mailto:wakilii@aol.com">E-Mail</a></div></div>
+<div class="rv"><div class="media" style="margin-bottom:18px"><img src="/img/clara-wella.webp" alt="Clara Wella" loading="lazy" style="aspect-ratio:4/5;object-position:center 20%;max-width:380px"></div>
+<div class="entries">{ve('clara-wella')}</div></div>
 </div></div></section>
 ''' + magazine_band() + contribute_band()
     return (tx("Leben auf Sansibar: Aufenthalt, Steuern, Kosten | Zanzibar Insider", "Living on Zanzibar: residency, taxes, costs | Zanzibar Insider"),
